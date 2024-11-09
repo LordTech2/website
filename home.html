@@ -19,7 +19,6 @@
             text-align: center;
             position: relative; /* To position the profile button */
         }
-
         /* Centered container styling */
         .container {
             max-width: 600px;
@@ -29,11 +28,9 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
             width: 100%;
         }
-
         h1 {
             color: #ffffff;
         }
-
         .btn {
             display: inline-block;
             padding: 12px 20px;
@@ -44,11 +41,9 @@
             border-radius: 4px;
             font-weight: bold;
         }
-
         .btn:hover {
             background-color: #555;
         }
-
         /* Profile Button (Circle) */
         .profile-btn {
             position: absolute;
@@ -66,7 +61,6 @@
             cursor: pointer;
             text-transform: uppercase;
         }
-
         /* Upload Button */
         .upload-btn {
             position: absolute;
@@ -79,11 +73,9 @@
             cursor: pointer;
             font-weight: bold;
         }
-
         .upload-btn:hover {
             background-color: #777;
         }
-
         /* File upload form styling */
         .upload-form {
             margin-top: 20px;
@@ -92,16 +84,13 @@
             border-radius: 5px;
             display: none; /* Hidden by default */
         }
-
         .upload-form label {
             display: block;
             margin-bottom: 10px;
         }
-
         .upload-form input[type="file"] {
             margin-bottom: 10px;
         }
-
         .upload-form input[type="submit"],
         .go-back-btn {
             background-color: #555;
@@ -112,12 +101,10 @@
             cursor: pointer;
             margin-top: 10px;
         }
-
         .upload-form input[type="submit"]:hover,
         .go-back-btn:hover {
             background-color: #777;
         }
-
         .message {
             margin-top: 10px;
             color: #00ff00; /* Green color for success message */
@@ -128,18 +115,15 @@
             const form = document.getElementById('uploadForm');
             form.style.display = form.style.display === 'none' || form.style.display === '' ? 'block' : 'none';
         }
-
         function showMessage(event) {
             event.preventDefault(); // Prevent actual form submission
             const message = document.getElementById('uploadMessage');
             message.innerText = 'Upload sent to Portal';
             message.style.display = 'block';
             document.getElementById('uploadForm').reset(); // Reset the form
-
             // Hide the form after showing the message
             document.getElementById('uploadForm').style.display = 'none';
         }
-
         function goBack() {
             window.location.href = 'home.html'; // Redirect to home.html
         }
@@ -160,6 +144,7 @@
         <a href="updates.html" class="btn">Website Updates</a>
         <a href="tutorials.html" class="btn">YouTube Tutorials</a>
         <a href="jobs.html" class="btn">Jobs You Can Do</a>
+        <a href="notes-and-emails.html" class="btn">Notes and Emails</a>
 
         <!-- File Upload Form -->
         <div class="upload-form" id="uploadForm">
@@ -174,6 +159,5 @@
             <button class="go-back-btn" onclick="goBack()">Go Back</button>
         </div>
     </div>
-
 </body>
 </html>
