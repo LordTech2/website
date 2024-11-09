@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lord Technologies - Payroll</title>
+    <style>
+        /* General page styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: #1a1a1a;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            width: 100%;
+        }
+
+        h1 {
+            color: #ffffff;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 10px;
+            background-color: #333;
+            color: #e0e0e0;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: #555;
+        }
+
+        .pay-details, .calculator {
+            margin-top: 20px;
+        }
+
+        .pay-details h2, .calculator h2 {
+            color: #fff;
+        }
+
+        .pay-details p, .calculator p {
+            color: #e0e0e0;
+        }
+
+        /* Calculator Inputs */
+        .calculator input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            background-color: #444;
+            color: #e0e0e0;
+        }
+
+        .calculator input[type="submit"] {
+            background-color: #555;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .calculator input[type="submit"]:hover {
+            background-color: #777;
+        }
+
+        .message {
+            margin-top: 20px;
+            color: #00ff00; /* Green color for success message */
+            font-weight: bold;
+        }
+
+        .go-back-btn {
+            margin-top: 20px;
+            background-color: #555;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .go-back-btn:hover {
+            background-color: #777;
+        }
+    </style>
+    <script>
+        function calculatePay() {
+            var hoursWorked = parseFloat(document.getElementById('hoursWorked').value);
+            var hourlyRate = parseFloat(document.getElementById('hourlyRate').value);
+
+            if (isNaN(hoursWorked) || isNaN(hourlyRate)) {
+                alert("Please enter valid numbers for hours worked and hourly rate.");
+                return;
+            }
+
+            var weeklyPay = hoursWorked * hourlyRate;
+            document.getElementById('weeklyPay').innerText = 'Your Weekly Pay: $' + weeklyPay.toFixed(2);  // Ensure result is displayed
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Lord Technologies - Payroll</h1>
+
+        <!-- Employee Information -->
+        <div class="pay-details">
+            <h2>Employee Details</h2>
+            <p><strong>Name:</strong> Tiffany</p>
+            <p><strong>Last Paid:</strong> 11/01/2024</p>
+            <p><strong>Hourly Rate:</strong> $45.07</p>
+        </div>
+
+        <!-- Pay Calculator -->
+        <div class="calculator">
+            <h2>Calculate Your Weekly Pay</h2>
+            <p>Enter the hours you worked and your hourly rate to calculate your weekly pay.</p>
+            <form onsubmit="event.preventDefault(); calculatePay();">
+                <label for="hoursWorked">Hours Worked:</label>
+                <input type="number" id="hoursWorked" name="hoursWorked" placeholder="Enter hours worked" required>
+
+                <label for="hourlyRate">Hourly Rate ($):</label>
+                <input type="number" id="hourlyRate" name="hourlyRate" placeholder="Enter your hourly rate" required>
+
+                <input type="submit" value="Calculate Pay">
+            </form>
+
+            <!-- Weekly Pay Display -->
+            <p id="weeklyPay"></p>
+        </div>
+
+        <div class="message" id="payMessage"></div>
+
+        <button class="go-back-btn" onclick="window.location.href='home.html'">Go Back to Home</button>
+    </div>
+
+</body>
+</html>

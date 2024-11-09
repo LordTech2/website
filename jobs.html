@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lord Technologies - Jobs You Can Do</title>
+    <title>Lord Technologies - Available Jobs</title>
     <style>
         /* General page styling */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #000;
             color: #e0e0e0;
             margin: 0;
@@ -19,39 +19,63 @@
         }
 
         .container {
-            padding: 20px;
+            padding: 30px;
             background-color: #1a1a1a;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             width: 100%;
-            max-width: 600px;
+            max-width: 800px;
             text-align: center;
         }
 
         h1 {
             color: #ffffff;
+            font-size: 2em;
+            margin-bottom: 20px;
         }
 
-        .job-info {
+        .job-info, .due-date, .no-new-jobs {
             background-color: #333;
-            color: #e0e0e0;
             padding: 20px;
-            margin-top: 20px;
-            border-radius: 5px;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
-        .due-date {
-            background-color: #333;
+        .job-info ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .job-info li {
+            background-color: #444;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        .job-info li:hover {
+            background-color: #555;
+        }
+
+        .due-date h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #4caf50; /* Green for completed jobs */
+        }
+
+        .no-new-jobs {
+            background-color: #444;
             color: #e0e0e0;
-            padding: 20px;
+            font-size: 1.2em;
             margin-top: 20px;
-            border-radius: 5px;
         }
 
         .back-btn {
             display: inline-block;
             padding: 12px 20px;
-            margin-top: 20px;
+            margin-top: 30px;
             background-color: #333;
             color: #e0e0e0;
             text-decoration: none;
@@ -63,34 +87,41 @@
             background-color: #555;
         }
 
+        .job-info li:last-child {
+            margin-bottom: 0;
+        }
+
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Jobs You Can Do</h1>
+        <h1>Available Jobs</h1>
 
         <!-- Job Info Section -->
         <div class="job-info">
-            <p>Here are the things you can do:</p>
+            <p>Here are some of the tasks you can do:</p>
             <ul>
-                <li>1. </li>
-                <li>2. </li>
-                <li>3. </li>
-                <li>4. </li>
-                <li>5. </li>
+                <li>1. Cat Name Generator</li>
+                <li>2. PC Name Generator</li>
+                <li>3. Web Development Assistance</li>
+                <li>4. Troubleshooting Hardware Issues</li>
+                <li>5. Client Feedback Analysis</li>
             </ul>
         </div>
 
         <!-- Due Date Section -->
         <div class="due-date">
             <h3>Job Status: Completed</h3>
-            <p>90%</strong></p>
+        </div>
+
+        <!-- No New Jobs Section -->
+        <div class="no-new-jobs">
+            <p>No New Jobs Available</p>
         </div>
 
         <!-- Back to Homepage Button -->
         <a href="home.html" class="back-btn">Go Back to Homepage</a>
-
     </div>
 
 </body>

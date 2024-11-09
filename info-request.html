@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lord Technologies - Info Request</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: #1a1a1a;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            width: 100%;
+        }
+
+        h1 {
+            color: #ffffff;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 10px;
+            background-color: #333;
+            color: #e0e0e0;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: #555;
+        }
+
+        .form-container {
+            background-color: #2a2a2a;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .form-container input[type="text"], .form-container input[type="email"], .form-container textarea, .form-container input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #444;
+            background-color: #333;
+            color: white;
+        }
+
+        .form-container input[type="submit"] {
+            background-color: #555;
+            cursor: pointer;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #777;
+        }
+
+        .success-message {
+            color: #00ff00; /* Green text */
+            font-size: 18px;
+            margin-top: 15px;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Info Request</h1>
+        <p>If you need a license key or any other information, fill out the form below:</p>
+
+        <a href="home.html" class="btn">Back to Home</a>
+
+        <div class="form-container">
+            <h3>Request Form</h3>
+            <form id="infoRequestForm" onsubmit="handleRequestSubmit(event)">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="request-type">Request Type</label>
+                <input type="text" id="request-type" name="request-type" placeholder="License Key, Information, etc." required>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" placeholder="Enter details here..." required></textarea>
+
+                <input type="submit" value="Submit Request">
+            </form>
+
+            <!-- Success message -->
+            <div class="success-message" id="successMessage">Your request has been submitted to the board.</div>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle form submission
+        function handleRequestSubmit(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Show the success message
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block'; // Show confirmation message
+
+            // Reset the form after submission
+            document.getElementById('infoRequestForm').reset();
+        }
+    </script>
+</body>
+</html>

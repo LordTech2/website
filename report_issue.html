@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lord Technologies - Report an Issue</title>
+    <style>
+        /* General page styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: #1a1a1a;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            width: 100%;
+        }
+
+        h1 {
+            color: #ffffff;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            margin: 10px;
+            background-color: #333;
+            color: #e0e0e0;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: #555;
+        }
+
+        /* Report Form */
+        .report-form {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #2a2a2a;
+            border-radius: 5px;
+        }
+
+        .report-form input, .report-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            background-color: #444;
+            color: #e0e0e0;
+        }
+
+        .report-form textarea {
+            resize: vertical;
+            height: 150px;
+        }
+
+        .report-form input[type="submit"] {
+            background-color: #555;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .report-form input[type="submit"]:hover {
+            background-color: #777;
+        }
+
+        .message {
+            margin-top: 10px;
+            color: #00ff00; /* Green color for success message */
+            display: none; /* Initially hidden */
+        }
+
+        .go-back-btn {
+            margin-top: 20px;
+            background-color: #555;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .go-back-btn:hover {
+            background-color: #777;
+        }
+    </style>
+    <script>
+        // Show the success message when the form is submitted
+        function showMessage(event) {
+            event.preventDefault(); // Prevent actual form submission
+            const message = document.getElementById('uploadMessage');
+            message.innerText = 'File submitted to the board!';
+            message.style.display = 'block'; // Show the success message
+            document.getElementById('reportForm').reset(); // Reset the form
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Report an Issue or Bug</h1>
+        <p>If you have encountered a bug or wish to report an issue, please fill out the form below:</p>
+
+        <form id="reportForm" class="report-form" onsubmit="showMessage(event)">
+            <label for="reportName">Your Name:</label>
+            <input type="text" id="reportName" name="reportName" required>
+            <label for="reportType">Type of Issue:</label>
+            <select id="reportType" name="reportType">
+                <option value="Bug">Bug</option>
+                <option value="System Issue">System Issue</option>
+                <option value="Other">Other</option>
+            </select>
+            <label for="reportDetails">Description of Issue:</label>
+            <textarea id="reportDetails" name="reportDetails" required></textarea>
+            <input type="submit" value="Submit Report">
+        </form>
+
+        <div class="message" id="uploadMessage"></div>
+
+        <button class="go-back-btn" onclick="window.location.href='home.html'">Go Back to Home</button>
+    </div>
+
+</body>
+</html>
