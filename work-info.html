@@ -1,146 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lord Technologies - Work Info</title>
-    <style>
-        /* General page styling */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #e0e0e0;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 600px;
-            padding: 20px;
-            background-color: #1a1a1a;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            width: 100%;
-        }
-
-        h1 {
-            color: #ffffff;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 20px;
-            margin: 10px;
-            background-color: #333;
-            color: #e0e0e0;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-
-        .btn:hover {
-            background-color: #555;
-        }
-
-        .section {
-            margin-top: 20px;
-        }
-
-        .section h2 {
-            color: #fff;
-        }
-
-        .section p {
-            color: #e0e0e0;
-            font-size: 14px;
-        }
-
-        .form-section input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 4px;
-            background-color: #444;
-            color: #e0e0e0;
-        }
-
-        .form-section input[type="submit"] {
-            background-color: #555;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .form-section input[type="submit"]:hover {
-            background-color: #777;
-        }
-
-        .go-back-btn {
-            margin-top: 20px;
-            background-color: #555;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .go-back-btn:hover {
-            background-color: #777;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lord Technologies - Work Info</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .animate-gradient {
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+    }
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .form-input {
+      transition: all 0.3s ease;
+      background: rgba(30, 58, 138, 0.3);
+      backdrop-filter: blur(8px);
+    }
+    .form-input:focus {
+      background: rgba(30, 58, 138, 0.4);
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+    }
+    .neon-home-button {
+      transition: all 0.3s ease;
+    }
+    .neon-home-button:hover {
+      color: #fff;
+      text-shadow: 0 0 5px #60A5FA,
+                   0 0 15px #60A5FA,
+                   0 0 25px #60A5FA,
+                   0 0 35px #60A5FA;
+      box-shadow: 0 0 5px #60A5FA,
+                  0 0 15px #60A5FA,
+                  0 0 25px #60A5FA,
+                  0 0 35px #60A5FA;
+    }
+    .submit-button {
+      transition: all 0.3s ease;
+    }
+    .submit-button:hover {
+      box-shadow: 0 0 15px #60A5FA,
+                  0 0 25px #60A5FA,
+                  0 0 35px #60A5FA;
+    }
+  </style>
 </head>
-<body>
+<body class="min-h-full bg-blue-900 text-blue-50">
+  <div class="fixed inset-0 animate-gradient bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500 -z-10"></div>
+  
+  <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
+    <div class="max-w-3xl w-full space-y-8 bg-blue-800 bg-opacity-30 backdrop-blur-lg p-8 rounded-2xl shadow-xl">
+      <div class="text-center">
+        <h1 class="text-3xl font-bold text-white mb-2">Lord Technologies - Work Info</h1>
+        <p class="text-blue-200">Manage your time off and leave requests</p>
+      </div>
 
-    <div class="container">
-        <h1>Lord Technologies - Work Info</h1>
+      <!-- PTO and Leave Information Card -->
+      <div class="bg-blue-900 bg-opacity-50 p-6 rounded-xl backdrop-blur-md">
+        <h2 class="text-xl font-semibold text-white mb-4">Paid Time Off (PTO) and Leave Information</h2>
+        <div class="space-y-2 text-blue-200">
+          <p>At Lord Technologies, employees are entitled to the following leave types:</p>
+          <ul class="list-disc list-inside space-y-1">
+            <li><span class="font-medium text-white">Paid Time Off (PTO):</span> Up to 40 days per year</li>
+            <li><span class="font-medium text-white">Vacation:</span> Up to 30 days per year</li>
+            <li><span class="font-medium text-white">Sick Leave:</span> 25 days per year</li>
+            <li><span class="font-medium text-white">Other Leave:</span> Special leave requests can be made in advance</li>
+          </ul>
+        </div>
+      </div>
 
-        <!-- Work Info Section -->
-        <div class="section">
-            <h2>Paid Time Off (PTO) and Leave Information</h2>
-            <p>At Lord Technologies, employees are entitled to paid time off (PTO), vacation, and sick leave. The following leave types are available:</p>
-            <ul>
-                <li><strong>Paid Time Off (PTO):</strong> Up to 10 days per year</li>
-                <li><strong>Vacation:</strong> Up to 5 days per year</li>
-                <li><strong>Sick Leave:</strong> 3 days per year</li>
-                <li><strong>Other Leave:</strong> Special leave requests can be made in advance</li>
-            </ul>
-            <p>Please submit your leave request below with the appropriate details.</p>
+      <!-- Leave Request Form -->
+      <form id="leaveRequestForm" class="space-y-6">
+        <h2 class="text-2xl font-semibold text-white mb-4">Request Time Off</h2>
+        
+        <div>
+          <label for="leaveType" class="block text-sm font-medium text-blue-200 mb-2">Leave Type</label>
+          <select id="leaveType" name="leaveType" required
+                  class="form-input w-full px-4 py-3 rounded-lg border border-blue-400 focus:outline-none text-white">
+            <option value="">Select leave type</option>
+            <option value="PTO">Paid Time Off (PTO)</option>
+            <option value="Vacation">Vacation</option>
+            <option value="Sick Leave">Sick Leave</option>
+            <option value="Other">Other</option>
+          </select>
         </div>
 
-        <!-- Leave Request Form -->
-        <div class="form-section">
-            <h2>Request Time Off</h2>
-            <form onsubmit="event.preventDefault(); alert('Leave Request Submitted!');">
-                <label for="leaveType">Leave Type:</label>
-                <select id="leaveType" name="leaveType" required>
-                    <option value="PTO">Paid Time Off (PTO)</option>
-                    <option value="Vacation">Vacation</option>
-                    <option value="Sick Leave">Sick Leave</option>
-                    <option value="Other">Other</option>
-                </select>
-
-                <label for="startDate">Start Date:</label>
-                <input type="date" id="startDate" name="startDate" required>
-
-                <label for="endDate">End Date:</label>
-                <input type="date" id="endDate" name="endDate" required>
-
-                <label for="reason">Reason for Leave (optional):</label>
-                <textarea id="reason" name="reason" rows="4" placeholder="Provide a reason for your leave (optional)"></textarea>
-
-                <input type="submit" value="Submit Leave Request">
-            </form>
+        <div>
+          <label for="startDate" class="block text-sm font-medium text-blue-200 mb-2">Start Date</label>
+          <input type="date" id="startDate" name="startDate" required
+                 class="form-input w-full px-4 py-3 rounded-lg border border-blue-400 focus:outline-none text-white">
         </div>
 
-        <!-- Button to go back to the homepage -->
-        <button class="go-back-btn" onclick="window.location.href='home.html'">Go Back to Home</button>
+        <div>
+          <label for="endDate" class="block text-sm font-medium text-blue-200 mb-2">End Date</label>
+          <input type="date" id="endDate" name="endDate" required
+                 class="form-input w-full px-4 py-3 rounded-lg border border-blue-400 focus:outline-none text-white">
+        </div>
+
+        <div>
+          <label for="reason" class="block text-sm font-medium text-blue-200 mb-2">Reason for Leave (optional)</label>
+          <textarea id="reason" name="reason" rows="4"
+                    class="form-input w-full px-4 py-3 rounded-lg border border-blue-400 focus:outline-none text-white"
+                    placeholder="Provide a reason for your leave (optional)"></textarea>
+        </div>
+
+        <button type="submit" 
+                class="submit-button w-full py-3 px-4 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium transition-all duration-300">
+          Submit Leave Request
+        </button>
+      </form>
+
+      <!-- Back Button -->
+      <a href="home.html" 
+         class="neon-home-button block text-center py-3 px-4 rounded-lg border border-blue-400 text-blue-200 hover:text-white hover:border-blue-300 transition-all duration-300">
+        Back to Homepage
+      </a>
     </div>
+  </div>
 
+  <script>
+    document.getElementById('leaveRequestForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      alert('Leave Request Submitted!');
+      // Here you would typically send the form data to a server
+    });
+  </script>
 </body>
 </html>

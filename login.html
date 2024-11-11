@@ -12,96 +12,176 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #2f2f2f;
+            background-color: #0066cc; /* Changed to blue */
             color: #e0e0e0;
             text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
         }
 
         .login-container {
-            padding: 20px;
-            background-color: #3d3d3d;
-            border-radius: 5px;
+            padding: 40px;
+            background-color: rgba(17, 24, 39, 0.95);
+            border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            max-width: 400px;
+            max-width: 300px;
             width: 100%;
+            position: relative;
+            z-index: 2;
         }
 
         .branding {
             font-size: 1.5em;
             font-weight: bold;
-            color: #e0e0e0;
+            color: #ffffff;
             margin-bottom: 20px;
         }
 
         h2 {
             color: #ffffff;
+            font-size: 24px;
+            margin-top: 0;
+            margin-bottom: 30px;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-align: left;
         }
 
         .form-group label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #e0e0e0;
+            display: none;
         }
 
         .form-group input {
             width: 100%;
-            padding: 8px;
-            border: 1px solid #555;
-            border-radius: 4px;
-            background-color: #5a5a5a;
-            color: #e0e0e0;
+            padding: 10px;
+            border: 1px solid #1e90ff; /* Changed to blue */
+            border-radius: 20px;
+            background-color: transparent;
+            color: #1e90ff; /* Changed to blue */
+            font-size: 14px;
+        }
+
+        .form-group input::placeholder {
+            color: #1e90ff; /* Changed to blue */
         }
 
         .btn {
             width: 100%;
             padding: 10px;
-            background-color: #1a1a1a;
             border: none;
             color: white;
             font-size: 16px;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 20px;
             font-weight: bold;
+            margin-bottom: 10px;
+            position: relative;
+            overflow: hidden;
+            transition: 0.5s;
         }
 
-        .btn:hover {
-            background-color: #333333;
+        .neon-button {
+            background-color: #0066cc; /* Changed to blue */
+            border: 2px solid #0066cc; /* Changed to blue */
         }
 
-        .forgot-password {
-            display: block;
+        .neon-button:hover {
+            background: #0066cc; /* Changed to blue */
+            color: #050801;
+            box-shadow: 0 0 5px #0066cc,
+                        0 0 25px #0066cc,
+                        0 0 50px #0066cc,
+                        0 0 100px #0066cc; /* Changed to blue */
+        }
+
+        .neon-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0066cc; /* Changed to blue */
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .neon-button:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .reset-btn {
+            background-color: #4169e1; /* Changed to royal blue */
+            border: 2px solid #4169e1; /* Changed to royal blue */
             margin-top: 10px;
-            color: #cccccc;
-            text-decoration: underline;
-            cursor: pointer;
+        }
+
+        .reset-btn:hover {
+            background: #4169e1; /* Changed to royal blue */
+            color: #050801;
+            box-shadow: 0 0 5px #4169e1,
+                        0 0 25px #4169e1,
+                        0 0 50px #4169e1,
+                        0 0 100px #4169e1; /* Changed to royal blue */
+        }
+
+        .reset-btn::before {
+            background: #4169e1; /* Changed to royal blue */
         }
     </style>
 </head>
 <body>
+    <div id="particles-js"></div>
     <div class="login-container">
-        <div class="branding">Lord Technologies</div>
-        <h2>Developer Portal Login</h2>
+        <h2>DEV PORTAL</h2>
         <form id="loginForm">
             <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
+                <input type="text" id="username" name="username" placeholder="Username" required>
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
             </div>
-            <button type="button" class="btn" onclick="validateLogin()">Login</button>
+            <button type="button" class="btn neon-button" onclick="validateLogin()">Submit</button>
+            <button type="button" class="btn reset-btn neon-button" onclick="resetPassword()">Reset Password</button>
         </form>
-        <a class="forgot-password" onclick="alert('Please contact support@lordtechnologies.com to reset your password.')">Forgot Password?</a>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle", stroke: { width: 0, color: "#000000" }, polygon: { nb_sides: 5 }, image: { src: "img/github.svg", width: 100, height: 100 } },
+                opacity: { value: 0.5, random: false, anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false } },
+                size: { value: 3, random: true, anim: { enable: false, speed: 40, size_min: 0.1, sync: false } },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false, attract: { enable: false, rotateX: 600, rotateY: 1200 } }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+                modes: { grab: { distance: 400, line_linked: { opacity: 1 } }, bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 }, repulse: { distance: 200, duration: 0.4 }, push: { particles_nb: 4 }, remove: { particles_nb: 2 } }
+            },
+            retina_detect: true
+        });
+
         function validateLogin() {
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
@@ -111,6 +191,11 @@
             } else {
                 alert("Invalid username or password. Please try again.");
             }
+        }
+
+        function resetPassword() {
+            // Your reset password logic here
+            alert("Password reset functionality not implemented yet.");
         }
     </script>
 </body>

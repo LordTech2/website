@@ -1,56 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes and Emails</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #e0e0e0;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
-        .container {
-            max-width: 600px;
-            padding: 20px;
-            background-color: #1a1a1a;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-        }
-        h1 {
-            color: #ffffff;
-        }
-        .note {
-            margin: 20px 0;
-            padding: 10px;
-            background-color: #333;
-            border-radius: 5px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes and Emails</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .animate-flow {
+      animation: flow 20s linear infinite;
+      background-size: 400% 400%;
+    }
+    @keyframes flow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .note-card {
+      transition: all 0.3s ease;
+    }
+    .note-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+    .neon-button {
+      position: relative;
+      overflow: hidden;
+      transition: 0.5s;
+      border: 2px solid #1e90ff;
+    }
+    .neon-button:hover {
+      background: #1e90ff;
+      color: #050801;
+      box-shadow: 0 0 5px #1e90ff,
+                  0 0 25px #1e90ff,
+                  0 0 50px #1e90ff,
+                  0 0 100px #1e90ff;
+    }
+  </style>
 </head>
-<body>
-    <div class="container">
-        <h1>Notes and Emails</h1>
+<body class="h-full flex items-center justify-center bg-blue-900 text-blue-100">
+  <div class="fixed inset-0 -z-10 animate-flow bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500"></div>
+  
+  <div class="max-w-2xl w-full mx-4 p-8 space-y-8">
+    <h1 class="text-4xl font-bold text-center text-white mb-12">Notes and Emails</h1>
 
-        <div class="note">
-            <p>Note 1: https://teams.live.com/l/invite/FAAgRdBxk30U3RUlgE | Meating</p>
-
-
-            <p>Email 1: No New Emails</p>
-        </div>
-        <div class="note">
-            <p>Note 2: No New Notes</p>
-            <p>Note 3: No New Notes</p>
-    
-        </div>
-        <a href="home.html" style="color: #e0e0e0; text-decoration: none;">Go back to Homepage</a>
+    <!-- Meeting Note Card -->
+    <div class="note-card bg-blue-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+      <h2 class="text-xl font-semibold text-blue-200 mb-4">Meeting Notes</h2>
+      <a href="https://teams.live.com/l/invite/FAAgRdBxk30U3RUlgE" 
+         class="text-blue-300 hover:text-blue-100 underline transition-colors duration-300"
+         target="_blank">
+        Teams Meeting Link
+      </a>
     </div>
+
+    <!-- Emails Card -->
+    <div class="note-card bg-blue-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+      <h2 class="text-xl font-semibold text-blue-200 mb-4">Emails</h2>
+      <p class="text-blue-100">No New Emails</p>
+    </div>
+
+    <!-- Additional Notes Card -->
+    <div class="note-card bg-blue-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+      <h2 class="text-xl font-semibold text-blue-200 mb-4">Additional Notes</h2>
+      <div class="space-y-3">
+        <p class="text-blue-100">Note 2: No New Notes</p>
+        <p class="text-blue-100">Note 3: No New Notes</p>
+      </div>
+    </div>
+
+    <!-- Back Button -->
+    <div class="text-center pt-8">
+      <a href="home.html" 
+         class="neon-button inline-block px-8 py-3 rounded-lg text-white hover:text-blue-900 transition duration-300">
+        Back to Homepage
+      </a>
+    </div>
+  </div>
 </body>
 </html>

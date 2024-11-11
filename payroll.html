@@ -1,155 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lord Technologies - Payroll</title>
-    <style>
-        /* General page styling */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #e0e0e0;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 600px;
-            padding: 20px;
-            background-color: #1a1a1a;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            width: 100%;
-        }
-
-        h1 {
-            color: #ffffff;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 20px;
-            margin: 10px;
-            background-color: #333;
-            color: #e0e0e0;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-
-        .btn:hover {
-            background-color: #555;
-        }
-
-        .pay-details, .calculator {
-            margin-top: 20px;
-        }
-
-        .pay-details h2, .calculator h2 {
-            color: #fff;
-        }
-
-        .pay-details p, .calculator p {
-            color: #e0e0e0;
-        }
-
-        /* Calculator Inputs */
-        .calculator input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 4px;
-            background-color: #444;
-            color: #e0e0e0;
-        }
-
-        .calculator input[type="submit"] {
-            background-color: #555;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .calculator input[type="submit"]:hover {
-            background-color: #777;
-        }
-
-        .message {
-            margin-top: 20px;
-            color: #00ff00; /* Green color for success message */
-            font-weight: bold;
-        }
-
-        .go-back-btn {
-            margin-top: 20px;
-            background-color: #555;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .go-back-btn:hover {
-            background-color: #777;
-        }
-    </style>
-    <script>
-        function calculatePay() {
-            var hoursWorked = parseFloat(document.getElementById('hoursWorked').value);
-            var hourlyRate = parseFloat(document.getElementById('hourlyRate').value);
-
-            if (isNaN(hoursWorked) || isNaN(hourlyRate)) {
-                alert("Please enter valid numbers for hours worked and hourly rate.");
-                return;
-            }
-
-            var weeklyPay = hoursWorked * hourlyRate;
-            document.getElementById('weeklyPay').innerText = 'Your Weekly Pay: $' + weeklyPay.toFixed(2);  // Ensure result is displayed
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lord Technologies - Payroll Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .animate-gradient {
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+    }
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .calculator-input {
+      transition: all 0.3s ease;
+      background: rgba(30, 58, 138, 0.3);
+      backdrop-filter: blur(8px);
+    }
+    .calculator-input:focus {
+      background: rgba(30, 58, 138, 0.4);
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+    }
+    .result-animation {
+      animation: slideUp 0.5s ease-out;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .neon-home-button {
+      transition: all 0.3s ease;
+    }
+    .neon-home-button:hover {
+      color: #fff;
+      text-shadow: 0 0 5px #60A5FA,
+                   0 0 15px #60A5FA,
+                   0 0 25px #60A5FA,
+                   0 0 35px #60A5FA;
+      box-shadow: 0 0 5px #60A5FA,
+                  0 0 15px #60A5FA,
+                  0 0 25px #60A5FA,
+                  0 0 35px #60A5FA;
+    }
+    .calculate-button {
+      transition: all 0.3s ease;
+    }
+    .calculate-button:hover {
+      box-shadow: 0 0 15px #60A5FA,
+                  0 0 25px #60A5FA,
+                  0 0 35px #60A5FA;
+    }
+  </style>
 </head>
-<body>
+<body class="min-h-full bg-blue-900 text-blue-50">
+  <div class="fixed inset-0 animate-gradient bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500 -z-10"></div>
+  
+  <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
+    <div class="max-w-xl w-full space-y-8 bg-blue-800 bg-opacity-30 backdrop-blur-lg p-8 rounded-2xl shadow-xl">
+      <div class="text-center">
+        <h1 class="text-3xl font-bold text-white mb-2">Payroll Calculator</h1>
+        <p class="text-blue-200">Calculate your weekly earnings</p>
+      </div>
 
-    <div class="container">
-        <h1>Lord Technologies - Payroll</h1>
+      <!-- Employee Information Card -->
+      <div class="bg-blue-900 bg-opacity-50 p-6 rounded-xl backdrop-blur-md">
+        <h2 class="text-xl font-semibold text-white mb-4">Employee Details</h2>
+        <div class="space-y-2 text-blue-200">
+          <p class="flex justify-between">
+            <span>Name:</span>
+            <span class="font-medium text-white">Tiffany</span>
+          </p>
+          <p class="flex justify-between">
+            <span>Last Paid:</span>
+            <span class="font-medium text-white">11/01/2024</span>
+          </p>
+          <p class="flex justify-between">
+            <span>Hourly Rate:</span>
+            <span class="font-medium text-white">$45.07</span>
+          </p>
+        </div>
+      </div>
 
-        <!-- Employee Information -->
-        <div class="pay-details">
-            <h2>Employee Details</h2>
-            <p><strong>Name:</strong> Tiffany</p>
-            <p><strong>Last Paid:</strong> 11/01/2024</p>
-            <p><strong>Hourly Rate:</strong> $45.07</p>
+      <!-- Calculator Form -->
+      <form id="calculatorForm" class="space-y-6">
+        <div>
+          <label for="hoursWorked" class="block text-sm font-medium text-blue-200 mb-2">Hours Worked</label>
+          <input type="number" id="hoursWorked" 
+                 class="calculator-input w-full px-4 py-3 rounded-lg border border-blue-400 focus:outline-none text-white"
+                 placeholder="Enter hours worked" required>
         </div>
 
-        <!-- Pay Calculator -->
-        <div class="calculator">
-            <h2>Calculate Your Weekly Pay</h2>
-            <p>Enter the hours you worked and your hourly rate to calculate your weekly pay.</p>
-            <form onsubmit="event.preventDefault(); calculatePay();">
-                <label for="hoursWorked">Hours Worked:</label>
-                <input type="number" id="hoursWorked" name="hoursWorked" placeholder="Enter hours worked" required>
-
-                <label for="hourlyRate">Hourly Rate ($):</label>
-                <input type="number" id="hourlyRate" name="hourlyRate" placeholder="Enter your hourly rate" required>
-
-                <input type="submit" value="Calculate Pay">
-            </form>
-
-            <!-- Weekly Pay Display -->
-            <p id="weeklyPay"></p>
+        <div>
+          <label for="hourlyRate" class="block text-sm font-medium text-blue-200 mb-2">Hourly Rate ($)</label>
+          <input type="number" id="hourlyRate" 
+                 class="calculator-input w-full px-4 py-3 rounded-lg border border-blue-400 focus:outline-none text-white"
+                 placeholder="Enter hourly rate" required>
         </div>
 
-        <div class="message" id="payMessage"></div>
+        <button type="submit" 
+                class="calculate-button w-full py-3 px-4 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium transition-all duration-300">
+          Calculate Pay
+        </button>
+      </form>
 
-        <button class="go-back-btn" onclick="window.location.href='home.html'">Go Back to Home</button>
+      <!-- Result Display -->
+      <div id="weeklyPay" class="hidden result-animation text-center py-4 px-6 bg-blue-500 bg-opacity-20 rounded-lg">
+        <span class="text-lg font-semibold text-white"></span>
+      </div>
+
+      <!-- Back Button -->
+      <a href="home.html" 
+         class="neon-home-button block text-center py-3 px-4 rounded-lg border border-blue-400 text-blue-200 hover:text-white hover:border-blue-300 transition-all duration-300">
+        Back to Homepage
+      </a>
     </div>
+  </div>
 
+  <script>
+    document.getElementById('calculatorForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const hoursWorked = parseFloat(document.getElementById('hoursWorked').value);
+      const hourlyRate = parseFloat(document.getElementById('hourlyRate').value);
+      
+      if (isNaN(hoursWorked) || isNaN(hourlyRate)) {
+        alert("Please enter valid numbers for hours worked and hourly rate.");
+        return;
+      }
+      
+      const weeklyPay = hoursWorked * hourlyRate;
+      const resultDiv = document.getElementById('weeklyPay');
+      resultDiv.querySelector('span').textContent = `Weekly Pay: $${weeklyPay.toFixed(2)}`;
+      resultDiv.classList.remove('hidden');
+      
+      // Add animation class
+      resultDiv.classList.add('result-animation');
+    });
+  </script>
 </body>
 </html>
