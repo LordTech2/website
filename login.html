@@ -5,29 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lord Technologies - Login</title>
     <style>
+        /* General Body Styling */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #0066cc; /* Changed to blue */
+            background-color: #333333; /* Dark background for contrast */
             color: #e0e0e0;
-            text-align: center;
             overflow: hidden;
             position: relative;
         }
 
-        #particles-js {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
+        /* Login Container Styling */
         .login-container {
             padding: 40px;
             background-color: rgba(17, 24, 39, 0.95);
@@ -37,128 +29,101 @@
             width: 100%;
             position: relative;
             z-index: 2;
+            text-align: center;
         }
 
+        /* Branding and Header */
         .branding {
             font-size: 1.5em;
             font-weight: bold;
-            color: #ffffff;
+            color: #FFD700; /* Neon yellow */
             margin-bottom: 20px;
         }
 
         h2 {
-            color: #ffffff;
+            color: #FFD700; /* Neon yellow */
             font-size: 24px;
-            margin-top: 0;
-            margin-bottom: 30px;
+            margin: 0 0 30px;
         }
 
+        /* Form Group and Input Styling */
         .form-group {
             margin-bottom: 20px;
             text-align: left;
         }
 
-        .form-group label {
-            display: none;
-        }
-
         .form-group input {
             width: 100%;
             padding: 10px;
-            border: 1px solid #1e90ff; /* Changed to blue */
+            border: 1px solid #FFD700; /* Neon yellow */
             border-radius: 20px;
             background-color: transparent;
-            color: #1e90ff; /* Changed to blue */
+            color: #FFD700; /* Neon yellow */
             font-size: 14px;
         }
 
         .form-group input::placeholder {
-            color: #1e90ff; /* Changed to blue */
+            color: #FFD700; /* Neon yellow */
         }
 
+        /* Button Styling */
         .btn {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
+            display: inline-block;
+            width: calc(100% - 20px);
+            padding: 12px 20px;
+            margin: 10px 0;
+            background-color: transparent;
+            color: #FFD700; /* Neon yellow */
+            text-decoration: none;
             border-radius: 20px;
-            font-weight: bold;
-            margin-bottom: 10px;
+            font-weight: 500;
+            border: 2px solid #FFD700; /* Neon yellow */
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            transition: 0.5s;
+            cursor: pointer;
         }
 
-        .neon-button {
-            background-color: #0066cc; /* Changed to blue */
-            border: 2px solid #0066cc; /* Changed to blue */
+        .btn:hover {
+            background-color: #FFD700; /* Neon yellow */
+            color: #333333;
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px #FFD700; /* Neon yellow */
         }
 
-        .neon-button:hover {
-            background: #0066cc; /* Changed to blue */
-            color: #050801;
-            box-shadow: 0 0 5px #0066cc,
-                        0 0 25px #0066cc,
-                        0 0 50px #0066cc,
-                        0 0 100px #0066cc; /* Changed to blue */
-        }
-
-        .neon-button::before {
+        .btn::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
-            background: #0066cc; /* Changed to blue */
-            z-index: -1;
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.5s ease-in-out;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 215, 0, 0.4), /* Neon yellow */
+                transparent
+            );
+            transition: 0.5s;
         }
 
-        .neon-button:hover::before {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .reset-btn {
-            background-color: #4169e1; /* Changed to royal blue */
-            border: 2px solid #4169e1; /* Changed to royal blue */
-            margin-top: 10px;
-        }
-
-        .reset-btn:hover {
-            background: #4169e1; /* Changed to royal blue */
-            color: #050801;
-            box-shadow: 0 0 5px #4169e1,
-                        0 0 25px #4169e1,
-                        0 0 50px #4169e1,
-                        0 0 100px #4169e1; /* Changed to royal blue */
-        }
-
-        .reset-btn::before {
-            background: #4169e1; /* Changed to royal blue */
+        .btn:hover::before {
+            left: 100%;
         }
     </style>
 </head>
 <body>
-    <div id="particles-js"></div>
     <div class="login-container">
         <h2>DEV PORTAL</h2>
         <form id="loginForm">
             <div class="form-group">
-                <label for="username">Username:</label>
                 <input type="text" id="username" name="username" placeholder="Username" required>
             </div>
             <div class="form-group">
-                <label for="password">Password:</label>
                 <input type="password" id="password" name="password" placeholder="Password" required>
             </div>
-            <button type="button" class="btn neon-button" onclick="validateLogin()">Submit</button>
-            <button type="button" class="btn reset-btn neon-button" onclick="resetPassword()">Reset Password</button>
+            <button type="button" class="btn" onclick="validateLogin()">Submit</button>
+            <button type="button" class="btn" onclick="resetPassword()">Reset Password</button>
         </form>
     </div>
 
@@ -189,13 +154,12 @@
             if (username === "Lord2025" && password === "Lord2025") {
                 window.location.href = "home.html";
             } else {
-                alert("Invalid username or password. Please try again.");
+                alert("Invalid credentials");
             }
         }
 
         function resetPassword() {
-            // Your reset password logic here
-            alert("Password reset functionality not implemented yet.");
+            alert("Password reset instructions have been sent to your email.");
         }
     </script>
 </body>

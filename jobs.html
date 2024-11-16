@@ -20,77 +20,91 @@
       100% { background-position: 0% 50%; }
     }
     .neon-button {
+      display: inline-block;
+      padding: 12px 20px;
+      margin-top: 20px;
+      background-color: transparent;
+      color: #FFD700; /* Neon yellow */
+      text-decoration: none;
+      border-radius: 20px;
+      font-weight: 500;
       position: relative;
       overflow: hidden;
-      transition: 0.5s;
-      border: 2px solid #1e90ff;
+      transition: all 0.3s ease;
+      border: 2px solid #FFD700; /* Neon yellow */
+      box-shadow: 0 0 10px #FFD700, /* Neon yellow */
+                  0 0 20px #FFD700, /* Neon yellow */
+                  0 0 40px #FFD700; /* Neon yellow */
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      width: 100%;
+      text-align: center;
     }
     .neon-button:hover {
-      background: #1e90ff;
-      color: #050801;
-      box-shadow: 0 0 5px #1e90ff,
-                  0 0 25px #1e90ff,
-                  0 0 50px #1e90ff,
-                  0 0 100px #1e90ff;
+      background-color: #FFA500; /* Slightly darker yellow */
+      color: #333333;
+      box-shadow: 0 0 15px #FFD700, /* Neon yellow */
+                  0 0 25px #FFD700, /* Neon yellow */
+                  0 0 50px #FFD700; /* Neon yellow */
+      transform: translateY(-2px);
+      border-color: #FFA500; /* Slightly darker yellow */
     }
     .neon-button::before {
       content: '';
       position: absolute;
       top: 0;
-      left: 0;
+      left: -100%;
       width: 100%;
       height: 100%;
-      background: #1e90ff;
-      z-index: -1;
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform 0.5s ease-in-out;
+      background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+      );
+      transition: 0.5s;
     }
     .neon-button:hover::before {
-      transform: scaleX(1);
-      transform-origin: left;
+      left: 100%;
     }
     .job-item {
       transition: all 0.3s ease;
     }
     .job-item:hover {
       transform: translateX(10px);
-      background-color: rgba(30, 144, 255, 0.2);
+      background-color: rgba(255, 215, 0, 0.2); /* Neon yellow */
     }
   </style>
 </head>
-<body class="h-full flex items-center justify-center bg-blue-900 text-blue-100">
-  <div class="fixed inset-0 -z-10 animate-flow bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500"></div>
+<body class="h-full flex items-center justify-center bg-gray-900 text-gray-100">
+  <div class="fixed inset-0 -z-10 animate-flow bg-gradient-to-br from-gray-900 via-gray-700 to-gray-500"></div>
   
-  <div class="max-w-2xl w-full space-y-8 p-8 bg-blue-800 bg-opacity-50 backdrop-blur-sm rounded-lg shadow-xl m-4">
-    <h1 class="text-3xl font-bold text-center text-white mb-6">Available Jobs</h1>
+  <div class="max-w-2xl w-full space-y-8 p-8 bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-lg shadow-xl m-4">
+    <h1 class="text-3xl font-bold text-center text-yellow-500 mb-6">Available Jobs</h1>
 
     <!-- Job Info Section -->
-    <div class="bg-blue-700 bg-opacity-50 p-6 rounded-lg">
-      <p class="text-xl text-white mb-4">No Available Jobs:</p>
+    <div class="bg-gray-700 bg-opacity-50 p-6 rounded-lg">
+      <p class="text-xl text-yellow-500 mb-4"> Available Jobs:</p>
       <ul class="space-y-3">
-        <li class="job-item bg-blue-600 bg-opacity-50 p-4 rounded-lg text-blue-100">1. Color Mixer</li>
-        <li class="job-item bg-blue-600 bg-opacity-50 p-4 rounded-lg text-blue-100">2. Email Generator</li>
-        <li class="job-item bg-blue-600 bg-opacity-50 p-4 rounded-lg text-blue-100">3. Baby Name Generator</li>
-        <li class="job-item bg-blue-600 bg-opacity-50 p-4 rounded-lg text-blue-100">4. Cofee Flavor Generator</li>
-        <li class="job-item bg-blue-600 bg-opacity-50 p-4 rounded-lg text-blue-100">5. Wraping Up Section 1 With A Wedding Planer</li>
+        <li class="job-item bg-gray-600 bg-opacity-50 p-4 rounded-lg text-gray-100">1. TBD</li>
+        <li class="job-item bg-gray-600 bg-opacity-50 p-4 rounded-lg text-gray-100">2. TBD</li>
+        <li class="job-item bg-gray-600 bg-opacity-50 p-4 rounded-lg text-gray-100">3. TBD</li>
+        <li class="job-item bg-gray-600 bg-opacity-50 p-4 rounded-lg text-gray-100">4. TBD</li>
+        <li class="job-item bg-gray-600 bg-opacity-50 p-4 rounded-lg text-gray-100">5. TBD</li>
       </ul>
     </div>
 
     <!-- Due Date Section -->
-    <div class="bg-blue-700 bg-opacity-50 p-6 rounded-lg">
-      <h3 class="text-xl font-semibold text-green-400">Job Status: Completed And Graded</h3>
+    <div class="bg-gray-700 bg-opacity-50 p-6 rounded-lg">
+      <h3 class="text-xl font-semibold text-yellow-500">Job Status: Waiting</h3>
     </div>
 
     <!-- No New Jobs Section -->
-    <div class="bg-blue-600 bg-opacity-50 p-6 rounded-lg">
-      <p class="text-xl text-blue-100">No New Jobs Available</p>
+    <div class="bg-gray-600 bg-opacity-50 p-6 rounded-lg">
+      <p class="text-xl text-gray-100">Waiting For Jobs</p>
     </div>
 
     <!-- Back to Homepage Button -->
-    <a href="home.html" class="neon-button mt-8 block w-full text-center py-3 px-4 rounded-md text-sm font-medium text-white bg-transparent hover:text-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 ease-in-out">
-      Go Back to Homepage
-    </a>
+    <a href="home.html" class="neon-button mt-8">Go Back to Homepage</a>
   </div>
 </body>
 </html>

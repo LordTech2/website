@@ -1,177 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lord Technologies - Admin Update</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #e0e0e0;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 600px;
-            padding: 20px;
-            background-color: #1a1a1a;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            width: 100%;
-        }
-
-        h1 {
-            color: #ffffff;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 20px;
-            margin: 10px;
-            background-color: #333;
-            color: #e0e0e0;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-
-        .btn:hover {
-            background-color: #555;
-        }
-
-        .login-form {
-            background-color: #2a2a2a;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-
-        .login-form input[type="text"], .login-form input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 4px;
-            border: 1px solid #444;
-            background-color: #333;
-            color: white;
-        }
-
-        .login-form input[type="submit"] {
-            background-color: #555;
-            cursor: pointer;
-        }
-
-        .login-form input[type="submit"]:hover {
-            background-color: #777;
-        }
-
-        .admin-dashboard {
-            display: none;
-            margin-top: 20px;
-            background-color: #2a2a2a;
-            padding: 20px;
-            border-radius: 5px;
-        }
-
-        .admin-dashboard h2 {
-            color: #ffffff;
-        }
-
-        .admin-option {
-            margin: 10px;
-            padding: 10px;
-            background-color: #333;
-            border-radius: 4px;
-            cursor: pointer;
-            color: #e0e0e0;
-        }
-
-        .admin-option:hover {
-            background-color: #555;
-        }
-
-        .message {
-            margin-top: 10px;
-            color: #00ff00; /* Green color */
-        }
-
-        .go-back-btn {
-            background-color: #555;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        .go-back-btn:hover {
-            background-color: #777;
-        }
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lord Technologies - Admin Update</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .animate-flow {
+      animation: flow 20s linear infinite;
+      background-size: 400% 400%;
+    }
+    @keyframes flow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .form-input {
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      color: #ffffff;
+    }
+    .form-input:focus {
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+    }
+    .neon-button {
+      display: inline-block;
+      padding: 12px 20px;
+      margin-top: 20px;
+      background-color: transparent;
+      color: #FFD700; /* Neon yellow */
+      text-decoration: none;
+      border-radius: 20px;
+      font-weight: 500;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 2px solid #FFD700; /* Neon yellow */
+      box-shadow: 0 0 10px #FFD700, /* Neon yellow */
+                  0 0 20px #FFD700, /* Neon yellow */
+                  0 0 40px #FFD700; /* Neon yellow */
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      width: 100%;
+      text-align: center;
+    }
+    .neon-button:hover {
+      background-color: #FFA500; /* Slightly darker yellow */
+      color: #333333;
+      box-shadow: 0 0 15px #FFD700, /* Neon yellow */
+                  0 0 25px #FFD700, /* Neon yellow */
+                  0 0 50px #FFD700; /* Neon yellow */
+      transform: translateY(-2px);
+      border-color: #FFA500; /* Slightly darker yellow */
+    }
+    .neon-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+      );
+      transition: 0.5s;
+    }
+    .neon-button:hover::before {
+      left: 100%;
+    }
+  </style>
 </head>
-<body>
-    <div class="container">
-        <!-- Login Form -->
-        <h1>Admin Login</h1>
-        <div class="login-form">
-            <form id="loginForm" onsubmit="login(event)">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-
-                <input type="submit" value="Login">
-            </form>
+<body class="min-h-full bg-gray-900 text-gray-100 flex items-center justify-center">
+  <div class="fixed inset-0 animate-flow bg-gradient-to-br from-gray-900 via-gray-700 to-gray-500 -z-10"></div>
+  
+  <div class="container max-w-lg w-full bg-gray-800 bg-opacity-50 backdrop-blur-lg p-8 rounded-2xl shadow-xl text-center">
+    <!-- Login Form -->
+    <h1 class="text-3xl font-bold text-yellow-500 mb-4">Admin Login</h1>
+    <div class="login-form space-y-4">
+      <form id="loginForm" onsubmit="login(event)" class="space-y-4">
+        <div>
+          <label for="username" class="block text-sm font-medium text-yellow-500 mb-2">Username:</label>
+          <input type="text" id="username" name="username" required
+                 class="form-input w-full px-4 py-3 rounded-lg border border-gray-400 focus:outline-none">
         </div>
 
-        <!-- Admin Dashboard (hidden until logged in) -->
-        <div class="admin-dashboard" id="adminDashboard">
-            <h2>Welcome, Admin</h2>
-            <p>Select a dev option:</p>
-            <div class="admin-option" onclick="confirmAction('Option 1')">Option 1: Reset System</div>
-            <div class="admin-option" onclick="confirmAction('Option 2')">Option 2: Restart Server</div>
-            <div class="admin-option" onclick="confirmAction('Option 3')">Option 3: Deploy Update</div>
-
-            <!-- Success Message -->
-            <div class="message" id="confirmationMessage" style="display: none;">Confirmed!</div>
-
-            <!-- Return to Homepage Button -->
-            <button class="go-back-btn" onclick="window.location.href='home.html'">Return to Homepage</button>
+        <div>
+          <label for="password" class="block text-sm font-medium text-yellow-500 mb-2">Password:</label>
+          <input type="password" id="password" name="password" required
+                 class="form-input w-full px-4 py-3 rounded-lg border border-gray-400 focus:outline-none">
         </div>
+
+        <button type="submit" class="neon-button">
+          Login
+        </button>
+      </form>
     </div>
 
-    <script>
-        // Login function to validate username and password
-        function login(event) {
-            event.preventDefault(); // Prevent form submission
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+    <!-- Admin Dashboard (hidden until logged in) -->
+    <div class="admin-dashboard hidden mt-8 bg-gray-900 bg-opacity-50 p-6 rounded-xl" id="adminDashboard">
+      <h2 class="text-xl font-semibold text-yellow-500 mb-4">Welcome, Admin</h2>
+      <p class="text-gray-300 mb-4">Select a dev option:</p>
+      <div class="admin-option neon-button" onclick="confirmAction('Option 1')">Option 1: Reset System</div>
+      <div class="admin-option neon-button" onclick="confirmAction('Option 2')">Option 2: Restart Server</div>
+      <div class="admin-option neon-button" onclick="confirmAction('Option 3')">Option 3: Deploy Update</div>
 
-            if (username === 'Dev2025' && password === 'Dev2025') {
-                document.querySelector('.login-form').style.display = 'none'; // Hide login form
-                document.getElementById('adminDashboard').style.display = 'block'; // Show admin dashboard
-            } else {
-                alert('Invalid username or password');
-            }
-        }
+      <!-- Success Message -->
+      <div class="message hidden text-green-400 font-medium mt-4" id="confirmationMessage">Confirmed!</div>
 
-        // Function to confirm admin action
-        function confirmAction(option) {
-            const confirmation = confirm(`Are you sure you want to proceed with ${option}?`);
-            if (confirmation) {
-                document.getElementById('confirmationMessage').style.display = 'block';
-            }
-        }
-    </script>
+      <!-- Return to Homepage Button -->
+      <button class="neon-button mt-4" onclick="window.location.href='home.html'">Return to Homepage</button>
+    </div>
+  </div>
+
+  <script>
+    // Login function to validate username and password
+    function login(event) {
+      event.preventDefault(); // Prevent form submission
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if (username === 'Dev2025' && password === 'Dev2025') {
+        document.querySelector('.login-form').style.display = 'none'; // Hide login form
+        document.getElementById('adminDashboard').style.display = 'block'; // Show admin dashboard
+      } else {
+        alert('Invalid username or password');
+      }
+    }
+
+    // Function to confirm admin action
+    function confirmAction(option) {
+      const confirmation = confirm(`Are you sure you want to proceed with ${option}?`);
+      if (confirmation) {
+        document.getElementById('confirmationMessage').classList.remove('hidden');
+      }
+    }
+  </script>
 </body>
 </html>

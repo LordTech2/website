@@ -27,56 +27,88 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     }
     .neon-button {
+      display: inline-block;
+      padding: 12px 20px;
+      margin-top: 20px;
+      background-color: transparent;
+      color: #FFD700; /* Neon yellow */
+      text-decoration: none;
+      border-radius: 20px;
+      font-weight: 500;
       position: relative;
       overflow: hidden;
-      transition: 0.5s;
-      border: 2px solid #1e90ff;
+      transition: all 0.3s ease;
+      border: 2px solid #FFD700; /* Neon yellow */
+      box-shadow: 0 0 10px #FFD700, /* Neon yellow */
+                  0 0 20px #FFD700, /* Neon yellow */
+                  0 0 40px #FFD700; /* Neon yellow */
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      width: 100%;
+      text-align: center;
     }
     .neon-button:hover {
-      background: #1e90ff;
-      color: #050801;
-      box-shadow: 0 0 5px #1e90ff,
-                  0 0 25px #1e90ff,
-                  0 0 50px #1e90ff,
-                  0 0 100px #1e90ff;
+      background-color: #FFA500; /* Slightly darker yellow */
+      color: #333333;
+      box-shadow: 0 0 15px #FFD700, /* Neon yellow */
+                  0 0 25px #FFD700, /* Neon yellow */
+                  0 0 50px #FFD700; /* Neon yellow */
+      transform: translateY(-2px);
+      border-color: #FFA500; /* Slightly darker yellow */
+    }
+    .neon-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+      );
+      transition: 0.5s;
+    }
+    .neon-button:hover::before {
+      left: 100%;
     }
   </style>
 </head>
-<body class="h-full flex items-center justify-center bg-blue-900 text-blue-100">
-  <div class="fixed inset-0 -z-10 animate-flow bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500"></div>
+<body class="h-full flex items-center justify-center bg-gray-900 text-gray-100">
+  <div class="fixed inset-0 -z-10 animate-flow bg-gradient-to-br from-gray-900 via-gray-700 to-gray-500"></div>
   
   <div class="max-w-2xl w-full mx-4 p-8 space-y-8">
-    <h1 class="text-4xl font-bold text-center text-white mb-12">Notes and Emails</h1>
+    <h1 class="text-4xl font-bold text-center text-yellow-500 mb-12">Notes and Emails</h1>
 
     <!-- Meeting Note Card -->
-    <div class="note-card bg-blue-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-6 shadow-lg">
-      <h2 class="text-xl font-semibold text-blue-200 mb-4">Meeting Notes</h2>
+    <div class="note-card bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+      <h2 class="text-xl font-semibold text-yellow-500 mb-4">Meetings</h2>
       <a href="https://teams.live.com/l/invite/FAAgRdBxk30U3RUlgE" 
-         class="text-blue-300 hover:text-blue-100 underline transition-colors duration-300"
+         class="text-yellow-400 hover:text-yellow-200 underline transition-colors duration-300"
          target="_blank">
         Teams Meeting Link
       </a>
     </div>
 
     <!-- Emails Card -->
-    <div class="note-card bg-blue-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-6 shadow-lg">
-      <h2 class="text-xl font-semibold text-blue-200 mb-4">Emails</h2>
-      <p class="text-blue-100">No New Emails</p>
+    <div class="note-card bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+      <h2 class="text-xl font-semibold text-yellow-500 mb-4">Notes</h2>
+      <p class="text-gray-100">No New Emails</p>
     </div>
 
-    <!-- Additional Notes Card -->
-    <div class="note-card bg-blue-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-6 shadow-lg">
-      <h2 class="text-xl font-semibold text-blue-200 mb-4">Additional Notes</h2>
+    <!-- Chapter : 2 (HTML) -->
+    <div class="note-card bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+      <h2 class="text-xl font-semibold text-yellow-500 mb-4">Chapter : 2 (HTML)</h2>
       <div class="space-y-3">
-        <p class="text-blue-100">Note 2: Chapter 1 Ending Today</p>
-        <p class="text-blue-100">Note 3: Chapter 2 Starting Today</p>
+        <p class="text-gray-100">Date 2: Chapter 2 Starting on 11/16/24</p>
+        <p class="text-gray-100">Date 3: Chapter 2 Ending On 11/22/24</p>
       </div>
     </div>
 
     <!-- Back Button -->
     <div class="text-center pt-8">
-      <a href="home.html" 
-         class="neon-button inline-block px-8 py-3 rounded-lg text-white hover:text-blue-900 transition duration-300">
+      <a href="home.html" class="neon-button">
         Back to Homepage
       </a>
     </div>

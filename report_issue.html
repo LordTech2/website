@@ -10,110 +10,130 @@
     body {
       font-family: 'Inter', sans-serif;
     }
-    .animate-gradient {
+    .animate-flow {
+      animation: flow 20s linear infinite;
       background-size: 400% 400%;
-      animation: gradient 15s ease infinite;
     }
-    @keyframes gradient {
+    @keyframes flow {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-    .form-input {
+    .note-card {
       transition: all 0.3s ease;
-      background: rgba(30, 58, 138, 0.3);
-      backdrop-filter: blur(8px);
     }
-    .form-input:focus {
-      background: rgba(30, 58, 138, 0.4);
-      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+    .note-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     }
-    .success-message {
-      animation: slideDown 0.5s ease-out;
-    }
-    @keyframes slideDown {
-      from { transform: translateY(-20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    .neon-button {
+    .neon-button, .neon-home-button {
+      display: inline-block;
+      padding: 12px 20px;
+      margin-top: 20px;
+      background-color: transparent;
+      color: #FFD700; /* Neon yellow */
+      text-decoration: none;
+      border-radius: 20px;
+      font-weight: 500;
       position: relative;
       overflow: hidden;
       transition: all 0.3s ease;
+      border: 2px solid #FFD700; /* Neon yellow */
+      box-shadow: 0 0 10px #FFD700, /* Neon yellow */
+                  0 0 20px #FFD700, /* Neon yellow */
+                  0 0 40px #FFD700; /* Neon yellow */
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      width: 100%;
+      text-align: center;
     }
-    .neon-button:hover {
-      box-shadow: 0 0 15px #60A5FA,
-                  0 0 25px #60A5FA,
-                  0 0 35px #60A5FA;
+    .neon-button:hover, .neon-home-button:hover {
+      background-color: #FFA500; /* Slightly darker yellow */
+      color: #333333;
+      box-shadow: 0 0 15px #FFD700, /* Neon yellow */
+                  0 0 25px #FFD700, /* Neon yellow */
+                  0 0 50px #FFD700; /* Neon yellow */
+      transform: translateY(-2px);
+      border-color: #FFA500; /* Slightly darker yellow */
     }
-    .neon-home-button {
-      transition: all 0.3s ease;
+    .neon-button::before, .neon-home-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+      );
+      transition: 0.5s;
     }
-    .neon-home-button:hover {
-      color: #fff;
-      text-shadow: 0 0 5px #60A5FA,
-                   0 0 15px #60A5FA,
-                   0 0 25px #60A5FA,
-                   0 0 35px #60A5FA;
-      box-shadow: 0 0 5px #60A5FA,
-                  0 0 15px #60A5FA,
-                  0 0 25px #60A5FA,
-                  0 0 35px #60A5FA;
+    .neon-button:hover::before, .neon-home-button:hover::before {
+      left: 100%;
+    }
+    .form-input {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border: 1px solid #444444;
+    }
+    .form-input::placeholder {
+      color: #cccccc;
     }
   </style>
 </head>
-<body class="min-h-full bg-blue-900 text-blue-50">
-  <div class="fixed inset-0 animate-gradient bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500 -z-10"></div>
+<body class="h-full flex items-center justify-center bg-gray-900 text-gray-100">
+  <div class="fixed inset-0 -z-10 animate-flow bg-gradient-to-br from-gray-900 via-gray-700 to-gray-500"></div>
   
-  <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
-    <div class="max-w-xl w-full space-y-8 bg-blue-800 bg-opacity-30 backdrop-blur-lg p-8 rounded-2xl shadow-xl">
-      <div class="text-center">
-        <h1 class="text-3xl font-bold text-white mb-2">Report an Issue</h1>
-        <p class="text-blue-200">Help us improve by reporting any issues you encounter</p>
+  <div class="max-w-xl w-full mx-4 p-8 space-y-8 bg-gray-800 bg-opacity-50 backdrop-blur-sm rounded-xl shadow-lg">
+    <div class="text-center">
+      <h1 class="text-3xl font-bold text-yellow-500 mb-2">Report an Issue</h1>
+      <p class="text-gray-200">Help us improve by reporting any issues you encounter</p>
+    </div>
+
+    <form id="reportForm" class="space-y-6">
+      <!-- Name Input -->
+      <div>
+        <label for="reportName" class="block text-sm font-medium text-yellow-500 mb-2">Your Name</label>
+        <input type="text" id="reportName" name="reportName" required
+               class="form-input w-full px-4 py-3 rounded-lg focus:outline-none"
+               placeholder="Enter your name">
       </div>
 
-      <form id="reportForm" class="space-y-6">
-        <!-- Name Input -->
-        <div>
-          <label for="reportName" class="block text-sm font-medium text-blue-200 mb-2">Your Name</label>
-          <input type="text" id="reportName" name="reportName" required
-                 class="form-input w-full px-4 py-3 rounded-lg border border-blue-400 focus:outline-none text-white placeholder-blue-300"
-                 placeholder="Enter your name">
-        </div>
-
-        <!-- Issue Type Select -->
-        <div>
-          <label for="reportType" class="block text-sm font-medium text-blue-200 mb-2">Type of Issue</label>
-          <select id="reportType" name="reportType"
-                  class="form-input w-full px-4 py-3 rounded-lg border border-blue-400 focus:outline-none text-white">
-            <option value="Bug">Bug</option>
-            <option value="System Issue">System Issue</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-
-        <!-- Description Textarea -->
-        <div>
-          <label for="reportDetails" class="block text-sm font-medium text-blue-200 mb-2">Description of Issue</label>
-          <textarea id="reportDetails" name="reportDetails" required
-                    class="form-input w-full px-4 py-3 rounded-lg border border-blue-400 focus:outline-none text-white placeholder-blue-300 min-h-[150px]"
-                    placeholder="Please describe the issue in detail..."></textarea>
-        </div>
-
-        <!-- Submit Button -->
-        <button type="submit"
-                class="neon-button w-full py-3 px-4 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium transition-all duration-300">
-          Submit Report
-        </button>
-      </form>
-
-      <!-- Success Message -->
-      <div id="uploadMessage" class="hidden success-message text-center py-4 px-6 bg-green-500 bg-opacity-20 rounded-lg text-green-300">
-        File submitted to the board!
+      <!-- Issue Type Select -->
+      <div>
+        <label for="reportType" class="block text-sm font-medium text-yellow-500 mb-2">Type of Issue</label>
+        <select id="reportType" name="reportType"
+                class="form-input w-full px-4 py-3 rounded-lg focus:outline-none text-gray-900 bg-gray-200">
+          <option value="Bug">Bug</option>
+          <option value="System Issue">System Issue</option>
+          <option value="Other">Other</option>
+        </select>
       </div>
 
-      <!-- Back Button with Neon Effect -->
-      <a href="home.html" 
-         class="neon-home-button block text-center py-3 px-4 rounded-lg border border-blue-400 text-blue-200 hover:text-white hover:border-blue-300 transition-all duration-300">
+      <!-- Description Textarea -->
+      <div>
+        <label for="reportDetails" class="block text-sm font-medium text-yellow-500 mb-2">Description of Issue</label>
+        <textarea id="reportDetails" name="reportDetails" required
+                  class="form-input w-full px-4 py-3 rounded-lg focus:outline-none min-h-[150px]"
+                  placeholder="Please describe the issue in detail..."></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="neon-button">
+        Submit Report
+      </button>
+    </form>
+
+    <!-- Success Message -->
+    <div id="uploadMessage" class="hidden success-message text-center py-4 px-6 bg-green-500 bg-opacity-20 rounded-lg text-green-300">
+      File submitted to the board!
+    </div>
+
+    <!-- Back Button with Neon Effect -->
+    <div class="text-center pt-8">
+      <a href="home.html" class="neon-home-button">
         Back to Homepage
       </a>
     </div>

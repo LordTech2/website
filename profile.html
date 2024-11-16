@@ -9,7 +9,7 @@
         /* General page styling */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #000;
+            background-color: #333333; /* Dark background for contrast */
             color: #e0e0e0;
             margin: 0;
             padding: 0;
@@ -22,7 +22,7 @@
 
         .profile-container {
             padding: 20px;
-            background-color: rgba(26, 26, 26, 0.9);
+            background-color: rgba(17, 24, 39, 0.9);
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
             width: 100%;
@@ -30,16 +30,16 @@
             text-align: center;
             position: relative;
             z-index: 2;
-            border: 1px solid rgba(0, 162, 255, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.3); /* Neon yellow */
             backdrop-filter: blur(10px);
-            box-shadow: 0 0 10px rgba(0, 162, 255, 0.2),
-                        0 0 20px rgba(0, 162, 255, 0.1);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2), /* Neon yellow */
+                        0 0 20px rgba(255, 215, 0, 0.1); /* Neon yellow */
         }
 
         h1 {
-            color: #ffffff;
+            color: #FFD700; /* Neon yellow */
             font-weight: 600;
-            text-shadow: 0 0 10px rgba(0, 162, 255, 0.5);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Neon yellow */
         }
 
         .profile-info {
@@ -48,36 +48,37 @@
             padding: 20px;
             border-radius: 8px;
             color: #e0e0e0;
-            border: 1px solid rgba(0, 162, 255, 0.2);
-            box-shadow: 0 0 10px rgba(0, 162, 255, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.2); /* Neon yellow */
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.1); /* Neon yellow */
         }
 
         .btn {
             display: inline-block;
             padding: 12px 20px;
             margin-top: 20px;
-            background-color: #0066ff;
-            color: #fff;
+            background-color: transparent;
+            color: #FFD700; /* Neon yellow */
             text-decoration: none;
             border-radius: 20px;
             font-weight: 500;
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
-            border: 2px solid #0066ff;
-            box-shadow: 0 0 10px #0066ff,
-                        0 0 20px #0066ff,
-                        0 0 40px #0066ff;
+            border: 2px solid #FFD700; /* Neon yellow */
+            box-shadow: 0 0 10px #FFD700, /* Neon yellow */
+                        0 0 20px #FFD700, /* Neon yellow */
+                        0 0 40px #FFD700; /* Neon yellow */
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
         .btn:hover {
-            background-color: #0052cc;
-            box-shadow: 0 0 15px #0066ff,
-                        0 0 25px #0066ff,
-                        0 0 50px #0066ff;
+            background-color: #FFA500; /* Slightly darker yellow */
+            color: #333333;
+            box-shadow: 0 0 15px #FFD700, /* Neon yellow */
+                        0 0 25px #FFD700, /* Neon yellow */
+                        0 0 50px #FFD700; /* Neon yellow */
             transform: translateY(-2px);
-            border-color: #1a75ff;
+            border-color: #FFA500; /* Slightly darker yellow */
         }
 
         .btn::before {
@@ -104,28 +105,29 @@
             display: inline-block;
             padding: 12px 20px;
             margin-top: 10px;
-            background-color: #333;
-            color: #e0e0e0;
+            background-color: transparent;
+            color: #FFD700; /* Neon yellow */
             text-decoration: none;
             border-radius: 20px;
             font-weight: 500;
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
-            border: 2px solid #666;
-            box-shadow: 0 0 10px #666,
-                        0 0 20px #666,
-                        0 0 40px #666;
+            border: 2px solid #FFD700; /* Neon yellow */
+            box-shadow: 0 0 10px #FFD700, /* Neon yellow */
+                        0 0 20px #FFD700, /* Neon yellow */
+                        0 0 40px #FFD700; /* Neon yellow */
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
         .back-btn:hover {
-            background-color: #555;
-            box-shadow: 0 0 15px #888,
-                        0 0 25px #888,
-                        0 0 50px #888;
+            background-color: #FFA500; /* Slightly darker yellow */
+            color: #333333;
+            box-shadow: 0 0 15px #FFD700, /* Neon yellow */
+                        0 0 25px #FFD700, /* Neon yellow */
+                        0 0 50px #FFD700; /* Neon yellow */
             transform: translateY(-2px);
-            border-color: #888;
+            border-color: #FFA500; /* Slightly darker yellow */
         }
 
         .back-btn::before {
@@ -194,8 +196,8 @@
                 this.vx = Math.random() * 2 - 1;
                 this.vy = Math.random() * 2 - 1;
                 this.radius = Math.random() * 3 + 2;
-                // Changed particle color to blue
-                this.color = `rgba(0, 162, 255, ${Math.random() * 0.5})`;
+                // Changed particle color to neon yellow
+                this.color = `rgba(255, 215, 0, ${Math.random() * 0.5})`;
             }
 
             update() {
@@ -222,7 +224,7 @@
         }
 
         function animate() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillStyle = 'rgba(51, 51, 51, 0.1)'; /* Dark background */
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             particles.forEach(particle => {
@@ -238,8 +240,8 @@
 
                     if (distance < 100) {
                         ctx.beginPath();
-                        // Changed connection color to blue
-                        ctx.strokeStyle = `rgba(0, 162, 255, ${0.2 * (1 - distance/100)})`;
+                        // Changed connection color to neon yellow
+                        ctx.strokeStyle = `rgba(255, 215, 0, ${0.2 * (1 - distance/100)})`;
                         ctx.lineWidth = 1;
                         ctx.moveTo(p1.x, p1.y);
                         ctx.lineTo(p2.x, p2.y);

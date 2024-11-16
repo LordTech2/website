@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #0066cc;
+            background-color: #333333; /* Dark background for contrast */
             color: #e0e0e0;
             margin: 0;
             padding: 0;
@@ -17,13 +17,12 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            position: relative;
             overflow: hidden;
         }
         .container {
             max-width: 600px;
             padding: 20px;
-            background-color: rgba(0, 51, 102, 0.95);
+            background-color: rgba(17, 24, 39, 0.95);
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
             width: 100%;
@@ -31,7 +30,7 @@
             z-index: 2;
         }
         h1 {
-            color: #ffffff;
+            color: #FFD700; /* Neon yellow */
             font-weight: 600;
             margin-bottom: 1.5rem;
         }
@@ -40,19 +39,20 @@
             padding: 12px 20px;
             margin: 10px;
             background-color: transparent;
-            color: #ffffff;
+            color: #FFD700; /* Neon yellow */
             text-decoration: none;
             border-radius: 20px;
             font-weight: 500;
-            border: 2px solid #1e90ff;
+            border: 2px solid #FFD700; /* Neon yellow */
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
         .btn:hover {
-            background-color: #1e90ff;
+            background-color: #FFD700; /* Neon yellow */
+            color: #333333;
             transform: translateY(-2px);
-            box-shadow: 0 0 20px #1e90ff;
+            box-shadow: 0 0 20px #FFD700; /* Neon yellow */
         }
         .btn::before {
             content: '';
@@ -64,7 +64,7 @@
             background: linear-gradient(
                 120deg,
                 transparent,
-                rgba(30, 144, 255, 0.4),
+                rgba(255, 215, 0, 0.4), /* Neon yellow */
                 transparent
             );
             transition: 0.5s;
@@ -76,8 +76,8 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background-color: #1e90ff;
-            color: white;
+            background-color: #FFD700; /* Neon yellow */
+            color: #333333;
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -91,49 +91,56 @@
             transition: all 0.3s ease;
         }
         .profile-btn:hover {
-            background-color: #0066cc;
+            background-color: #FFA500; /* Slightly darker yellow */
             transform: scale(1.1);
-            box-shadow: 0 0 15px #0066cc;
+            box-shadow: 0 0 15px #FFA500; /* Slightly darker yellow */
         }
         .upload-btn {
             position: absolute;
             top: 20px;
             left: 20px;
             background-color: transparent;
-            color: white;
+            color: #FFD700; /* Neon yellow */
             padding: 10px 20px;
             border-radius: 20px;
             cursor: pointer;
             font-weight: 500;
-            border: 2px solid #1e90ff;
+            border: 2px solid #FFD700; /* Neon yellow */
             z-index: 3;
             transition: all 0.3s ease;
         }
         .upload-btn:hover {
-            background-color: #1e90ff;
+            background-color: #FFD700; /* Neon yellow */
+            color: #333333;
             transform: translateY(-2px);
-            box-shadow: 0 0 20px #1e90ff;
+            box-shadow: 0 0 20px #FFD700; /* Neon yellow */
         }
         .upload-form {
             margin-top: 20px;
             padding: 20px;
-            background-color: rgba(0, 41, 82, 0.95);
+            background-color: rgba(17, 24, 39, 0.95);
             border-radius: 8px;
             display: none;
         }
         .upload-form label {
             display: block;
             margin-bottom: 10px;
+            color: #FFD700; /* Neon yellow */
         }
         .upload-form input[type="file"] {
             margin-bottom: 10px;
+            border: 1px solid #FFD700; /* Neon yellow */
+            border-radius: 20px;
+            padding: 10px;
+            color: #FFD700; /* Neon yellow */
+            background-color: transparent;
         }
         .upload-form input[type="submit"],
         .go-back-btn {
             background-color: transparent;
-            color: white;
+            color: #FFD700; /* Neon yellow */
             padding: 10px 20px;
-            border: 2px solid #1e90ff;
+            border: 2px solid #FFD700; /* Neon yellow */
             border-radius: 20px;
             cursor: pointer;
             margin-top: 10px;
@@ -141,27 +148,18 @@
         }
         .upload-form input[type="submit"]:hover,
         .go-back-btn:hover {
-            background-color: #1e90ff;
+            background-color: #FFD700; /* Neon yellow */
+            color: #333333;
             transform: translateY(-2px);
-            box-shadow: 0 0 20px #1e90ff;
+            box-shadow: 0 0 20px #FFD700; /* Neon yellow */
         }
         .message {
             margin-top: 10px;
             color: #00ff00;
         }
-        #fluid-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
     </style>
 </head>
 <body>
-    <canvas id="fluid-canvas"></canvas>
-    
     <a href="profile.html" class="profile-btn">
         T
     </a>
@@ -179,7 +177,7 @@
         <a href="payroll.html" class="btn">View Payroll</a>
         <a href="work-info.html" class="btn">Work Info</a>
         <a href="info-request.html" class="btn">Info Request</a>
-        <a href="admin.html" class="btn">Admin Update</a>
+        <a href="update.html" class="btn">Admin Update</a>
         <a href="paperwork.html" class="btn">Paperwork</a>
         <a href="completed-jobs.html" class="btn">Completed Jobs</a>
         <a href="late-work.html" class="btn">Late Work</a>
@@ -214,101 +212,6 @@
         function goBack() {
             window.location.href = 'home.html';
         }
-
-        const canvas = document.getElementById('fluid-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = Math.random() * 2 - 1;
-                this.vy = Math.random() * 2 - 1;
-                this.radius = Math.random() * 3 + 2;
-                this.color = `rgba(30, 144, 255, ${Math.random() * 0.5})`;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-            }
-        }
-
-        function init() {
-            particles = [];
-            for (let i = 0; i < 50; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animate() {
-            ctx.fillStyle = 'rgba(0, 102, 204, 0.1)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-
-            particles.forEach((p1, i) => {
-                particles.slice(i + 1).forEach(p2 => {
-                    const dx = p1.x - p2.x;
-                    const dy = p1.y - p2.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < 100) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(30, 144, 255, ${0.2 * (1 - distance/100)})`;
-                        ctx.lineWidth = 1;
-                        ctx.moveTo(p1.x, p1.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.stroke();
-                    }
-                });
-            });
-
-            requestAnimationFrame(animate);
-        }
-
-        init();
-        animate();
-
-        let mouse = { x: null, y: null };
-        
-        canvas.addEventListener('mousemove', (e) => {
-            mouse.x = e.x;
-            mouse.y = e.y;
-            
-            particles.forEach(particle => {
-                const dx = mouse.x - particle.x;
-                const dy = mouse.y - particle.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                
-                if (distance < 100) {
-                    particle.vx += dx * 0.001;
-                    particle.vy += dy * 0.001;
-                }
-            });
-        });
     </script>
 </body>
 </html>
