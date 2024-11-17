@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .options {
+            margin: 10px 0;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        <h1>HTML Quiz</h1>
+        <div id="quiz"></div>
+        <button id="submit">Submit Answers</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "What does HTML stand for?",
+                options: [
+                    "Hyper Text Markup Language",
+                    "High Text Markup Language",
+                    "Hyper Tabular Markup Language",
+                    "None of these"
+                ],
+                answer: "Hyper Text Markup Language" // Correct answer
+            },
+            {
+                question: "Which HTML element is used to define the title of a document?",
+                options: [
+                    "<head>",
+                    "<title>",
+                    "<meta>",
+                    "<header>"
+                ],
+                answer: "<title>" // Correct answer
+            },
+            {
+                question: "Which of the following is a valid HTML5 element?",
+                options: [
+                    "<footer>",
+                    "<section>",
+                    "<article>",
+                    "All of the above"
+                ],
+                answer: "All of the above" // Correct answer
+            },
+            {
+                question: "What is the correct HTML element for inserting a line break?",
+                options: [
+                    "<break>",
+                    "<br>",
+                    "<lb>",
+                    "<line>"
+                ],
+                answer: "<br>" // Correct answer
+            },
+            {
+                question: "Which attribute is used to specify the URL of an image in HTML?",
+                options: [
+                    "src",
+                    "href",
+                    "link",
+                    "url"
+                ],
+                answer: "src" // Correct answer
+            },
+            {
+                question: "Which HTML tag is used to create a hyperlink?",
+                options: [
+                    "<link>",
+                    "<a>",
+                    "<href>",
+                    "<url>"
+                ],
+                answer: "<a>" // Correct answer
+            },
+            {
+                question: "What is the purpose of the <head> tag in HTML?",
+                options: [
+                    "To define the main content of the page",
+                    "To contain meta-information about the document",
+                    "To create the footer of the page",
+                    "To link external CSS files"
+                ],
+                answer: "To contain meta-information about the document" // Correct answer
+            },
+            {
+                question: "Which HTML element is used to define an unordered list?",
+                options: [
+                    "<ul>",
+                    "<ol>",
+                    "<li>",
+                    "<list>"
+                ],
+                answer: "<ul>" // Correct answer
+            },
+            {
+                question: "Which HTML element is used to define a table?",
+                options: [
+                    "<table>",
+                    "<tab>",
+                    "<tbody>",
+                    "<tr>"
+                ],
+                answer: "<table>" // Correct answer
+            },
+            {
+                question: "What is the correct HTML for creating a checkbox?",
+                options: [
+                    "<input type='checkbox'>",
+                    "<checkbox>",
+                    "<input type='check'>",
+                    "<check>"
+                ],
+                answer: "<input type='checkbox'>" // Correct answer
+            },
+            {
+                question: "Which HTML element is used to define a paragraph?",
+                options: [
+                    "<p>",
+                    "<paragraph>",
+                    "<para>",
+                    "<text>"
+                ],
+                answer: "<p>" // Correct answer
+            },
+            {
+                question: "What does the <br> tag do?",
+                options: [
+                    "Creates a new paragraph",
+                    "Inserts a line break",
+                    "Creates a break in the text",
+                    "Both b and c"
+                ],
+                answer: "Both b and c" // Correct answer
+            },
+            {
+                question: "Which HTML attribute is used to define inline styles?",
+                options: [
+                    "class",
+                    "style",
+                    "font",
+                    "styles"
+                ],
+                answer: "style" // Correct answer
+            },
+            {
+                question: "What is the correct HTML element for the largest heading?",
+                options: [
+                    "<h1>",
+                    "<h6>",
+                    "<heading>",
+                    "<h>"
+                ],
+                answer: "<h1>" // Correct answer
+            },
+            {
+                question: "Which tag is used to define a footer for a document or section?",
+                options: [
+                    "<bottom>",
+                    "<footer>",
+                    "<section>",
+                    "<head>"
+                ],
+                answer: "<footer>" // Correct answer
+            },
+            {
+                question: "Which HTML element is used to specify a navigation link?",
+                options: [
+                    "<nav>",
+                    "<navigation>",
+                    "<link>",
+                    "<menu>"
+                ],
+                answer: "<nav>" // Correct answer
+            },
+            {
+                question: "What is the purpose of the <meta> tag?",
+                options: [
+                    "To provide metadata about the HTML document",
+                    "To create links to stylesheets",
+                    "To create headers",
+                    "To insert images"
+                ],
+                answer: "To provide metadata about the HTML document" // Correct answer
+            },
+            {
+                question: "Which element is used to define a section in a document?",
+                options: [
+                    "<section>",
+                    "<div>",
+                    "<article>",
+                    "All of the above"
+                ],
+                answer: "All of the above" // Correct answer
+            },
+            {
+                question: "Which HTML tag is used to define an input field?",
+                options: [
+                    "<input>",
+                    "<textfield>",
+                    "<textarea>",
+                    "<field>"
+                ],
+                answer: "<input>" // Correct answer
+            },
+            {
+                question: "What is the purpose of the <link> tag in HTML?",
+                options: [
+                    "To link to external CSS files",
+                    "To create hyperlinks",
+                    "To link JavaScript files",
+                    "To define relationships"
+                ],
+                answer: "To link to external CSS files" // Correct answer
+            },
+            {
+                question: "Which tag is used to create a drop-down list?",
+                options: [
+                    "<select>",
+                    "<dropdown>",
+                    "<list>",
+                    "<option>"
+                ],
+                answer: "<select>" // Correct answer
+            },
+            {
+                question: "What is the default value of the type attribute for the <input> tag?",
+                options: [
+                    "text",
+                    "checkbox",
+                    "radio",
+                    "submit"
+                ],
+                answer: "text" // Correct answer
+            },
+            {
+                question: "Which of the following is not a semantic HTML element?",
+                options: [
+                    "<article>",
+                    "<section>",
+                    "<div>",
+                    "<header>"
+                ],
+                answer: "<div>" // Correct answer
+            },
+            {
+                question: "What HTML element is used to define an internal style sheet?",
+                options: [
+                    "<style>",
+                    "<css>",
+                    "<script>",
+                    "<stylesheet>"
+                ],
+                answer: "<style>" // Correct answer
+            },
+            {
+                question: "Which HTML element is used to define a clickable button?",
+                options: [
+                    "<button>",
+                    "<click>",
+                    "<input type='button'>",
+                    "Both a and c"
+                ],
+                answer: "Both a and c" // Correct answer
+            },
+            {
+                question: "Which attribute is required for the <img> tag?",
+                options: [
+                    "src",
+                    "alt",
+                    "title",
+                    "href"
+                ],
+                answer: "src" // Correct answer
+            },
+            {
+                question: "Which tag is used for creating a numbered list?",
+                options: [
+                    "<ol>",
+                    "<ul>",
+                    "<li>",
+                    "<list>"
+                ],
+                answer: "<ol>" // Correct answer
+            },
+            {
+                question: "What does the <iframe> tag do?",
+                options: [
+                    "Defines an inline frame",
+                    "Creates a frame for the page",
+                    "Defines a border",
+                    "Inserts an image"
+                ],
+                answer: "Defines an inline frame" // Correct answer
+            },
+            {
+                question: "Which HTML element is used to define a section of navigation links?",
+                options: [
+                    "<nav>",
+                    "<navigation>",
+                    "<menu>",
+                    "<link>"
+                ],
+                answer: "<nav>" // Correct answer
+            },
+            {
+                question: "What is the purpose of the <canvas> element?",
+                options: [
+                    "To draw graphics on the fly",
+                    "To create animations",
+                    "To embed images",
+                    "To create forms"
+                ],
+                answer: "To draw graphics on the fly" // Correct answer
+            }
+        ];
+
+        const quizContainer = document.getElementById('quiz');
+        const resultContainer = document.getElementById('result');
+        const submitButton = document.getElementById('submit');
+
+        function loadQuiz() {
+            quizData.forEach((currentQuestion, questionIndex) => {
+                const questionElement = document.createElement('div');
+                questionElement.classList.add('question');
+                questionElement.innerHTML = `
+                    <p>${currentQuestion.question}</p>
+                    <div class="options">
+                        ${currentQuestion.options.map((option) => `
+                            <label>
+                                <input type="radio" name="question${questionIndex}" value="${option}">
+                                ${option}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                quizContainer.appendChild(questionElement);
+            });
+        }
+
+        function getSelectedAnswers() {
+            const answers = [];
+            quizData.forEach((_, questionIndex) => {
+                const selectedOption = document.querySelector(`input[name="question${questionIndex}"]:checked`);
+                answers.push(selectedOption ? selectedOption.value : null);
+            });
+            return answers;
+        }
+
+        function showResult() {
+            const answers = getSelectedAnswers();
+            let score = 0;
+
+            answers.forEach((answer, index) => {
+                if (answer === quizData[index].answer) {
+                    score++;
+                }
+            });
+
+            resultContainer.innerText = `You scored ${score} out of ${quizData.length}`;
+        }
+
+        submitButton.addEventListener('click', showResult);
+
+        loadQuiz();
+    </script>
+
+</body>
+</html>
