@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank of America - Accounts</title>
+    <style>
+        /* Same styling as index.html */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #d41e28; /* Bank of America's red */
+            color: white;
+            padding: 1rem;
+        }
+
+        header .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            font-size: 1rem;
+        }
+
+        header .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome-section h1 {
+            color: #d41e28;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            color: #888;
+        }
+
+        td {
+            color: #666;
+        }
+
+        .balance {
+            text-align: right;
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        footer a {
+            color: #d41e28;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div><strong>Bank of America</strong></div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="accounts.html">Accounts</a>
+                <a href="billpay.html">Bill Pay</a>
+                <a href="transfer-zelle.html">Transfer | Zelle</a>
+                <a href="alerts.html">Alerts</a>
+                <a href="rewards-deals.html">Rewards & Deals</a>
+                <a href="security-center.html">Security Center</a>
+                <a href="transaction.html">Transactions</a> <!-- Added link -->
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="welcome-section">
+            <h1>Your Accounts</h1>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Account</th>
+                    <th>Description</th>
+                    <th class="balance">Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>My Checking Account - 2394</td>
+                    <td>Card locked</td>
+                    <td class="balance">$200,699.75</td>
+                </tr>
+                <tr>
+                    <td>Customized Cash Rewards - 7445</td>
+                    <td>Credit Card</td>
+                    <td class="balance">$3,245.32</td>
+                </tr>
+                <tr>
+                    <td>Travel Rewards Card - 8843</td>
+                    <td>Credit Card</td>
+                    <td class="balance">$90,046.41</td>
+                </tr>
+                <tr>
+                    <td>Unlimited Rewards - 3894</td>
+                    <td>Credit Card</td>
+                    <td class="balance">$12,345.67</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <footer>
+            &copy; 2025 Bank of America. All rights reserved. <a href="#">Privacy</a> | <a href="#">Terms</a>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank of America - Alerts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #d41e28;
+            color: white;
+            padding: 1rem 2rem;
+        }
+
+        header .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 0.75rem;
+            font-size: 1rem;
+        }
+
+        header .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome-section h1 {
+            color: #d41e28;
+            margin-bottom: 1.5rem;
+        }
+
+        .alert-list {
+            margin-bottom: 3rem;
+        }
+
+        .alert-list .alert-item {
+            border-bottom: 1px solid #ddd;
+            padding: 1.5rem 0;
+        }
+
+        .alert-list .alert-item:last-child {
+            border-bottom: none;
+        }
+
+        .alert-list .alert-item .alert-header {
+            font-weight: bold;
+            color: #d41e28;
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .alert-list .alert-item .alert-body {
+            color: #666;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 1rem;
+            color: #999;
+        }
+
+        footer a {
+            color: #d41e28;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div><strong>Bank of America</strong></div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="accounts.html">Accounts</a>
+                <a href="billpay.html">Bill Pay</a>
+                <a href="transfer-zelle.html">Transfer | Zelle</a>
+                <a href="alerts.html">Alerts</a>
+                <a href="rewards-deals.html">Rewards & Deals</a>
+                <a href="security-center.html">Security Center</a>
+                <a href="transaction.html">Transactions</a> <!-- Added link -->
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <div class="welcome-section">
+            <h1>Alerts</h1>
+        </div>
+
+        <div class="alert-list">
+            <div class="alert-item">
+                <div class="alert-header">Unusual Login Attempt</div>
+                <div class="alert-body">We detected an unusual login attempt on your account from an unrecognized device. Please verify if it was you.</div>
+            </div>
+
+
+
+            <div class="alert-item">
+                <div class="alert-header">Transaction Alert</div>
+                <div class="alert-body">A transaction of $200 has been made from your account. If this wasn't you, please report it immediately.</div>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2025 Bank of America. All rights reserved. <a href="#">Privacy</a> | <a href="#">Terms</a>
+        </footer>
+    </div>
+</body>
+</html>

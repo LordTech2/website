@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank of America - Spending & Budgeting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #d41e28;
+            color: white;
+            padding: 1rem 2rem;
+        }
+
+        header .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 0.75rem;
+            font-size: 1rem;
+        }
+
+        header .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome-section h1 {
+            color: #d41e28;
+            margin-bottom: 1.5rem;
+        }
+
+        .budget-list {
+            margin-bottom: 3rem;
+        }
+
+        .budget-list .budget-item {
+            border-bottom: 1px solid #ddd;
+            padding: 1.5rem 0;
+        }
+
+        .budget-list .budget-item:last-child {
+            border-bottom: none;
+        }
+
+        .budget-list .budget-item .budget-title {
+            font-weight: bold;
+            color: #d41e28;
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .budget-list .budget-item .budget-description {
+            color: #666;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 1rem;
+            color: #999;
+        }
+
+        footer a {
+            color: #d41e28;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div><strong>Bank of America</strong></div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="accounts.html">Accounts</a>
+                <a href="billpay.html">Bill Pay</a>
+                <a href="transfer-zelle.html">Transfer | Zelle</a>
+                <a href="alerts.html">Alerts</a>
+                <a href="rewards-deals.html">Rewards & Deals</a>
+                <a href="security-center.html">Security Center</a>
+                <a href="transaction.html">Transactions</a> <!-- Added link -->
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="welcome-section">
+            <h1>Spending & Budgeting</h1>
+        </div>
+
+        <div class="budget-list">
+            <div class="budget-item">
+                <div class="budget-title">Set Spending Limits</div>
+                <div class="budget-description">Set monthly spending limits for categories like dining, entertainment, and shopping.</div>
+            </div>
+
+            <div class="budget-item">
+                <div class="budget-title">Track Your Expenses</div>
+                <div class="budget-description">View detailed reports of your spending patterns and stay on top of your finances.</div>
+            </div>
+
+            <div class="budget-item">
+                <div class="budget-title">Budgeting Tools</div>
+                <div class="budget-description">Use our tools to create personalized budgets that align with your financial goals.</div>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2025 Bank of America. All rights reserved. <a href="#">Privacy</a> | <a href="#">Terms</a>
+        </footer>
+    </div>
+</body>
+</html>

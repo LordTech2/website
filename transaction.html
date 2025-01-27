@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank of America - Transactions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #d41e28;
+            color: white;
+            padding: 1rem 2rem;
+        }
+
+        header .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 0.75rem;
+            font-size: 1rem;
+        }
+
+        header .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome-section h1 {
+            color: #d41e28;
+            margin-bottom: 1.5rem;
+        }
+
+        .transaction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        .transaction-table th, .transaction-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .transaction-table th {
+            background-color: #f4f4f4;
+            color: #888;
+        }
+
+        .transaction-table td {
+            color: #666;
+        }
+
+        .transaction-table .amount {
+            text-align: right;
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 1rem;
+            color: #999;
+        }
+
+        footer a {
+            color: #d41e28;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div><strong>Bank of America</strong></div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="accounts.html">Accounts</a>
+                <a href="billpay.html">Bill Pay</a>
+                <a href="transfer-zelle.html">Transfer | Zelle</a>
+                <a href="alerts.html">Alerts</a>
+                <a href="rewards-deals.html">Rewards & Deals</a>
+                <a href="security-center.html">Security Center</a>
+                <a href="transaction.html">Transactions</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="welcome-section">
+            <h1>Transactions</h1>
+        </div>
+
+        <table class="transaction-table">
+            <thead>
+                <tr>
+                    <th>Transaction Date</th>
+                    <th>Transaction Description</th>
+                    <th class="amount">Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- First Transaction -->
+                <tr>
+                    <td>01/12/2025</td>
+                    <td>Deposit from Direct Deposit</td>
+                    <td class="amount">+$430,000.00</td>
+                    <td>Completed</td>
+                </tr>
+
+                <!-- Additional 29 transactions -->
+                <tr>
+                    <td>01/25/2025</td>
+                    <td>Purchase</td>
+                    <td class="amount">-$500.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/24/2025</td>
+                    <td>Deposit from Direct Deposit</td>
+                    <td class="amount">+$1,200.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/22/2025</td>
+                    <td>Transfer</td>
+                    <td class="amount">-$250.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/21/2025</td>
+                    <td>ATM Withdrawal</td>
+                    <td class="amount">-$100.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/20/2025</td>
+                    <td>Purchase</td>
+                    <td class="amount">-$75.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/19/2025</td>
+                    <td>Purchase</td>
+                    <td class="amount">-$150.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/18/2025</td>
+                    <td>Transfer</td>
+                    <td class="amount">-$250.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/17/2025</td>
+                    <td>Purchase</td>
+                    <td class="amount">-$120.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/16/2025</td>
+                    <td>Credit Card Payment</td>
+                    <td class="amount">-$350.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/15/2025</td>
+                    <td>ATM Deposit</td>
+                    <td class="amount">+$1,000.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/14/2025</td>
+                    <td>Loan Payment</td>
+                    <td class="amount">-$1,200.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/13/2025</td>
+                    <td>Purchase</td>
+                    <td class="amount">-$29.99</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/12/2025</td>
+                    <td>Purchase</td>
+                    <td class="amount">-$60.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/11/2025</td>
+                    <td>Payment</td>
+                    <td class="amount">-$150.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/10/2025</td>
+                    <td>Transfer</td>
+                    <td class="amount">-$300.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/09/2025</td>
+                    <td>Deposit from Payroll</td>
+                    <td class="amount">+$2,500.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/08/2025</td>
+                    <td>Mortgage Payment</td>
+                    <td class="amount">-$1,000.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/07/2025</td>
+                    <td>Transfer</td>
+                    <td class="amount">+$5,000.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/06/2025</td>
+                    <td>Gym Membership</td>
+                    <td class="amount">-$50.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/05/2025</td>
+                    <td>Purchase</td>
+                    <td class="amount">-$80.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/04/2025</td>
+                    <td>Insurance Payment</td>
+                    <td class="amount">-$200.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/03/2025</td>
+                    <td>ATM Withdrawal</td>
+                    <td class="amount">-$100.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/02/2025</td>
+                    <td>Payment</td>
+                    <td class="amount">-$400.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>01/01/2025</td>
+                    <td>Transfer</td>
+                    <td class="amount">-$500.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>12/31/2024</td>
+                    <td>Rent Payment</td>
+                    <td class="amount">-$1,200.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>12/30/2024</td>
+                    <td>Transfer</td>
+                    <td class="amount">-$250.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>12/29/2024</td>
+                    <td>ATM Withdrawal</td>
+                    <td class="amount">-$100.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>12/28/2024</td>
+                    <td>Purchase</td>
+                    <td class="amount">-$60.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>12/27/2024</td>
+                    <td>Transfer</td>
+                    <td class="amount">+$500.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>12/26/2024</td>
+                    <td>Purchase</td>
+                    <td class="amount">-$75.00</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>12/25/2024</td>
+                    <td>Purchase</td>
+                    <td class="amount">-$85.00</td>
+                    <td>Completed</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <footer>
+            &copy; 2025 Bank of America. All rights reserved. <a href="#">Privacy</a> | <a href="#">
