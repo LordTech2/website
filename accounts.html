@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank of America - Accounts</title>
     <style>
-        /* Same styling as index.html */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -13,7 +12,7 @@
         }
 
         header {
-            background-color: #d41e28; /* Bank of America's red */
+            background-color: #d41e28;
             color: white;
             padding: 1rem;
         }
@@ -41,11 +40,33 @@
             padding: 1rem;
             background: white;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         .welcome-section h1 {
             color: #d41e28;
+        }
+
+        .credit-score-box {
+            background: #fafafa;
+            border-left: 5px solid #d41e28;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .credit-score-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .credit-score-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2a7f2a;
         }
 
         table {
@@ -99,7 +120,7 @@
                 <a href="alerts.html">Alerts</a>
                 <a href="rewards-deals.html">Rewards & Deals</a>
                 <a href="security-center.html">Security Center</a>
-                <a href="transaction.html">Transactions</a> <!-- Added link -->
+                <a href="transaction.html">Transactions</a>
             </nav>
         </div>
     </header>
@@ -107,6 +128,13 @@
     <div class="container">
         <div class="welcome-section">
             <h1>Your Accounts</h1>
+        </div>
+
+        <!-- Credit Score Section -->
+        <div class="credit-score-box">
+            <div class="credit-score-title">Your Credit Score</div>
+            <div class="credit-score-value">812</div>
+            <div style="color:#555; margin-top:0.3rem;">Updated: Today</div>
         </div>
 
         <table>
@@ -120,23 +148,23 @@
             <tbody>
                 <tr>
                     <td>My Checking Account - 2394</td>
-                    <td>Card locked</td>
-                    <td class="balance">$200,699.75</td>
+                    <td>Debit Card</td>
+                    <td class="balance">$928,029.92</td>
                 </tr>
                 <tr>
                     <td>Customized Cash Rewards - 7445</td>
                     <td>Credit Card</td>
-                    <td class="balance">$3,245.32</td>
+                    <td class="balance">$365,245.32</td>
                 </tr>
                 <tr>
                     <td>Travel Rewards Card - 8843</td>
                     <td>Credit Card</td>
-                    <td class="balance">$90,046.41</td>
+                    <td class="balance">$271,046.41</td>
                 </tr>
                 <tr>
                     <td>Unlimited Rewards - 3894</td>
                     <td>Credit Card</td>
-                    <td class="balance">$12,345.67</td>
+                    <td class="balance">$122,345.67</td>
                 </tr>
             </tbody>
         </table>
