@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VoidLink — Mask WiFi</title>
+  <style>
+    :root{--bg:#000;--text:#39ff14;--accent:#06b6d4}
+    html,body{height:100%;margin:0;font-family:Consolas,Monaco,monospace;background:radial-gradient(ellipse at 20% 10%, rgba(6,6,6,1) 0%, rgba(0,0,0,1) 40%);color:var(--text);display:flex;align-items:center;justify-content:center}
+    .card{width:520px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(57,255,20,0.06);box-shadow:0 10px 30px rgba(0,0,0,0.7);padding:28px;border-radius:8px;text-align:center}
+    h1{margin:0 0 20px;font-size:22px;color:var(--text);letter-spacing:1px}
+    .btn, select{display:block;background:transparent;border:1px solid rgba(57,255,20,0.08);padding:12px 20px;border-radius:6px;color:var(--text);cursor:pointer;margin:12px auto;font-size:16px;width:70%}
+    .terminal{background:rgba(0,0,0,0.6);padding:18px;border-radius:6px;border:1px solid rgba(57,255,20,0.04);margin-top:12px;color:var(--text);text-align:left;font-size:14px;line-height:1.4;white-space:pre-wrap;max-height:300px;overflow-y:auto;display:none}
+    .progress{height:8px;background:rgba(57,255,20,0.06);border-radius:6px;overflow:hidden;margin-top:12px;opacity:0;transition:opacity 0.3s}
+    .bar{height:100%;width:0%;background:linear-gradient(90deg, rgba(57,255,20,0.2), rgba(6,182,212,0.25));transition:width linear}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>MASK WIFI IDENTITY</h1>
+    <select id="maskType" class="btn">
+      <option value="SSID">Mask SSID (Network Name)</option>
+      <option value="MAC">Mask MAC Address</option>
+      <option value="Full">Full Network Mask</option>
+    </select>
+    <button id="startBtn" class="btn">Begin Masking</button>
+    <div class="terminal" id="log"></div>
+    <div class="progress" aria-hidden="true"><div id="bar" class="bar"></div></div>
+  </div>
+
+  <script>
+    const startBtn = document.getElementById('startBtn');
+    const maskType = document.getElementById('maskType');
+    const log = document.getElementById('log');
+    const bar = document.getElementById('bar');
+    const progressDiv = bar.parentElement;
+
+    function randomSSID(){
+      const names = ['NETGEAR_','xFi_','Home_','Fios-','OptimumWiFi_','Spectrum_','TP-Link_','Nighthawk_'];
+      const end = Math.floor(Math.random()*9000+1000);
+      return names[Math.floor(Math.random()*names.length)] + end;
+    }
+    function randomMAC(){
+      return Array.from({length:6},()=>Math.floor(Math.random()*255).toString(16).padStart(2,'0')).join(':');
+    }
+
+    function startMask(){
+      startBtn.disabled = true;
+      maskType.disabled = true;
+
+      log.style.display = 'block';
+      progressDiv.style.opacity = 1;
+      bar.style.transition = 'width 15s linear';
+      bar.style.width = '100%';
+
+      log.textContent = 'Initializing WiFi mask engine...\nLoading wireless drivers...\nPreparing spoofing layer...\n';
+
+      const messages = [
+        'Scanning for broadcast beacons...',
+        'Analyzing network identifiers...',
+        'Injecting spoof map...',
+        'Reassigning ID tables...',
+        'Locking masked identity...',
+        'Finalizing network cloak...'
+      ];
+
+      let i = 0;
+      let stepTime = 2000;
+
+      function next(){
+        if(i < messages.length){
+          log.textContent += messages[i] + '\n';
+          log.scrollTop = log.scrollHeight;
+          i++;
+          setTimeout(next, stepTime);
+        } else {
+          let result = '';
+          if(maskType.value === 'SSID'){
+            result = 'New SSID: ' + randomSSID();
+          } else if(maskType.value === 'MAC'){
+            result = 'New MAC Address: ' + randomMAC();
+          } else {
+            result = 'New SSID: ' + randomSSID() + '\nNew MAC: ' + randomMAC();
+          }
+
+          log.textContent += '\nMASKING COMPLETE:\n' + result + '\n';
+
+          const back = document.createElement('button');
+          back.textContent = 'Go Back';
+          back.className = 'btn';
+          back.style.marginTop = '16px';
+          back.onclick = () => window.location.href = 'home.html';
+          log.appendChild(back);
+        }
+      }
+
+      next();
+    }
+
+    startBtn.addEventListener('click', startMask);
+  </script>
+</body>
+</html>

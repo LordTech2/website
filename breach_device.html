@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VoidLink — Breach Device</title>
+  <style>
+    :root{--bg:#000;--text:#39ff14;--accent:#06b6d4}
+    html,body{height:100%;margin:0;font-family:Consolas,Monaco,monospace;background:radial-gradient(ellipse at 20% 10%, rgba(6,6,6,1) 0%, rgba(0,0,0,1) 40%);color:var(--text);display:flex;align-items:center;justify-content:center}
+    .card{width:520px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(57,255,20,0.06);box-shadow:0 10px 30px rgba(0,0,0,0.7);padding:28px;border-radius:8px;text-align:center}
+    h1{margin:0 0 20px;font-size:20px;color:var(--text);letter-spacing:1px}
+    .btn{display:block;background:transparent;border:1px solid rgba(57,255,20,0.08);padding:12px 20px;border-radius:6px;color:var(--text);cursor:pointer;margin:12px auto;font-size:16px;width:70%}
+    select{background:transparent;border:1px solid rgba(57,255,20,0.2);padding:10px;color:var(--text);border-radius:6px;width:80%;margin-top:10px}
+    .terminal{background:rgba(0,0,0,0.6);padding:18px;border-radius:6px;border:1px solid rgba(57,255,20,0.04);margin-top:18px;color:var(--text);text-align:left;font-size:14px;line-height:1.4;white-space:pre-wrap;height:260px;overflow-y:auto;display:none}
+    .progress{height:8px;background:rgba(57,255,20,0.06);border-radius:6px;overflow:hidden;margin-top:12px;opacity:0;transition:opacity 0.3s}
+    .bar{height:100%;width:0%;background:linear-gradient(90deg, rgba(57,255,20,0.2), rgba(6,182,212,0.25));transition:width linear}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>BREACH DEVICE</h1>
+
+    <h3 style="margin-top:0">Target Type</h3>
+    <select id="targetType">
+      <option value="Android">Android Phone</option>
+      <option value="iPhone">iPhone</option>
+      <option value="Windows">Windows PC</option>
+      <option value="Mac">MacOS Device</option>
+    </select>
+
+    <h3 style="margin-top:16px">Breach Method</h3>
+    <select id="breachMethod">
+      <option value="Exploit">Exploit Injection</option>
+      <option value="Bruteforce">Bruteforce Handshake</option>
+      <option value="Portscan">Port Vulnerability Scan</option>
+      <option value="Silent">Silent Background Breach</option>
+    </select>
+
+    <button id="startBtn" class="btn">Start Breach</button>
+
+    <div class="terminal" id="log"></div>
+    <div class="progress" aria-hidden="true"><div id="bar" class="bar"></div></div>
+  </div>
+
+  <script>
+    const startBtn = document.getElementById('startBtn');
+    const targetType = document.getElementById('targetType');
+    const breachMethod = document.getElementById('breachMethod');
+    const log = document.getElementById('log');
+    const bar = document.getElementById('bar');
+    const progressDiv = bar.parentElement;
+
+    function rand(min,max){return Math.floor(Math.random()*(max-min+1))+min;}
+
+    const fakeResults = {
+      Android:["Recovered SMS database (42 entries)","Extracted call logs (19 entries)","Tokenized Google auth cookie","Recovered WiFi keys (3 networks)"],
+      iPhone:["iMessage thread dump (12 threads)","AppleID device token","Photo metadata extraction (113 entries)","Safari saved passwords"],
+      Windows:["Recovered browser passwords (Chrome/Edge)","Dumped NTLM hash", "Extracted system event logs","WiFi registry keys pulled"],
+      Mac:["Keychain partial extraction","Safari history log (84 entries)","System preferences token","Recovered Bluetooth pairing keys"]
+    };
+
+    const steps = [
+      "Initializing breach engine…",
+      "Checking vulnerability vectors…",
+      "Injecting handshake hooks…",
+      "Bypassing security sandbox…",
+      "Escalating privileges…",
+      "Reading encrypted partitions…",
+      "Decrypting memory blocks…",
+      "Harvesting credentials…",
+      "Finalizing breach report…"
+    ];
+
+    function startBreach(){
+      startBtn.disabled = true;
+      targetType.disabled = true;
+      breachMethod.disabled = true;
+
+      log.style.display = 'block';
+      log.textContent = `Target: ${targetType.value}\nMethod: ${breachMethod.value}\n-----------------------------------\n`;
+
+      progressDiv.style.opacity = 1;
+      bar.style.transition = 'width 25s linear';
+      bar.style.width = '100%';
+
+      let index = 0;
+      function tick(){
+        if(index < steps.length){
+          log.textContent += steps[index] + "\n";
+          log.scrollTop = log.scrollHeight;
+          index++;
+          setTimeout(tick, rand(1500,2500));
+        } else {
+          log.textContent += "\nBREACH COMPLETE — Extracted Data:\n";
+          const results = fakeResults[targetType.value];
+          results.forEach(r=> log.textContent += "• " + r + "\n");
+          log.textContent += "-----------------------------------\n";
+
+          const backBtn = document.createElement('button');
+          backBtn.textContent = 'Go Back';
+          backBtn.className = 'btn';
+          backBtn.style.marginTop = '20px';
+          backBtn.onclick = () => window.location.href='home.html';
+          log.appendChild(backBtn);
+        }
+      }
+      tick();
+    }
+
+    startBtn.addEventListener('click', startBreach);
+  </script>
+</body>
+</html>

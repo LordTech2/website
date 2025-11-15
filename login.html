@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VoidLink — Device Auth</title>
+  <style>
+    :root{--bg:#000;--text:#39ff14;--muted:#204020;--accent:#06b6d4}
+    html,body{height:100%;margin:0;font-family:Consolas,Monaco,monospace;background:radial-gradient(ellipse at 20% 10%, rgba(6,6,6,1) 0%, rgba(0,0,0,1) 40%);color:var(--text)}
+    .wrap{display:flex;align-items:center;justify-content:center;height:100%;padding:24px}
+    .card{width:720px;max-width:96%;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(57,255,20,0.06);box-shadow:0 10px 30px rgba(0,0,0,0.7);padding:28px;border-radius:8px}
+    h1{margin:0 0 10px;font-size:20px;color:var(--text);letter-spacing:1px}
+    .terminal{background:rgba(0,0,0,0.6);padding:18px;border-radius:6px;border:1px solid rgba(57,255,20,0.04);min-height:140px}
+    .line{font-size:15px;line-height:1.6;white-space:pre-wrap}
+    .scan{display:flex;gap:12px;align-items:center}
+    .radar{width:60px;height:60px;border-radius:50%;background:radial-gradient(circle at 35% 35%, rgba(57,255,20,0.06), transparent 30%);position:relative;box-shadow:inset 0 0 25px rgba(57,255,20,0.02)}
+    .sweep{position:absolute;inset:0;border-radius:50%;mask:linear-gradient(90deg, transparent 0%, #000 30%);transform-origin:center;animation:sweep 2s linear infinite}
+    @keyframes sweep{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    .dots{display:flex;gap:6px}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);box-shadow:0 0 8px rgba(57,255,20,0.02) inset}
+    .dot.active{background:var(--text);box-shadow:0 0 12px var(--text)}
+    .status{margin-top:12px;color:var(--text);font-size:13px}
+    .muted{color:rgba(57,255,20,0.5)}
+    .progress{height:6px;background:rgba(57,255,20,0.06);border-radius:6px;overflow:hidden;margin-top:12px}
+    .bar{height:100%;width:0%;background:linear-gradient(90deg, rgba(57,255,20,0.2), rgba(6,182,212,0.25));transition:width 600ms linear}
+    .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity 200ms}
+    .modal-bg.show{opacity:1;pointer-events:auto}
+    .modal{background:#020202;border:1px solid rgba(57,255,20,0.06);padding:22px;border-radius:8px;min-width:320px;box-shadow:0 20px 50px rgba(0,0,0,0.8)}
+    .btn{background:transparent;border:1px solid rgba(57,255,20,0.08);padding:8px 12px;border-radius:6px;color:var(--text);cursor:pointer}
+    .small{font-size:12px;color:var(--muted)}
+    footer{margin-top:12px;color:var(--muted);font-size:12px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>VOIDLINK — Device Authentication</h1>
+      <div class="terminal" role="region" aria-live="polite">
+        <div class="line scan">
+          <div class="radar" aria-hidden="true">
+            <div class="sweep"></div>
+          </div>
+          <div>
+            <div id="statusText" class="status">Scanning for nearby unit…</div>
+            <div class="muted small">Please keep your device within range of the phone.</div>
+            <div class="progress" aria-hidden="true"><div id="bar" class="bar"></div></div>
+          </div>
+        </div>
+        <div style="height:8px"></div>
+        <div id="log" class="line muted small">Initializing radio stack…</div>
+      </div>
+      <footer><span class="small">Terminal emulation • experimental UI</span></footer>
+    </div>
+  </div>
+
+  <div id="modalBg" class="modal-bg" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal">
+      <div style="font-size:18px;margin-bottom:8px">Hello dylan</div>
+      <div class="small" style="margin-bottom:12px">Device authenticated and ready.</div>
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <button id="closeBtn" class="btn">Go Back</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const foundAt = 5000;
+    const popupAt = 9000;
+
+    const statusText = document.getElementById('statusText');
+    const log = document.getElementById('log');
+    const bar = document.getElementById('bar');
+    const modalBg = document.getElementById('modalBg');
+    const closeBtn = document.getElementById('closeBtn');
+
+    let audioCtx, oscillator, gainNode;
+    function startBeepLoop(){
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      gainNode = audioCtx.createGain();
+      gainNode.gain.value = 0.0;
+      gainNode.connect(audioCtx.destination);
+      oscillator = audioCtx.createOscillator();
+      oscillator.type = 'sine';
+      oscillator.frequency.value = 880;
+      oscillator.connect(gainNode);
+      oscillator.start();
+      let on = false;
+      window.beepInterval = setInterval(()=>{
+        on = !on;
+        gainNode.gain.cancelScheduledValues(audioCtx.currentTime);
+        gainNode.gain.setValueAtTime(on?0.08:0.0, audioCtx.currentTime);
+      }, 300);
+    }
+    function stopBeepLoop(){
+      if(window.beepInterval) clearInterval(window.beepInterval);
+      if(gainNode) gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+      setTimeout(()=>{try{oscillator.stop();audioCtx.close();}catch(e){}},200);
+    }
+
+    log.textContent = 'Initializing radio stack\nScanning hardware ports\nSearching for registered unit...';
+    statusText.textContent = 'Scanning for nearby unit…';
+    startBeepLoop();
+
+    const start = Date.now();
+    function tick(){
+      const elapsed = Date.now() - start;
+      const pct = Math.min(100, Math.round((elapsed / foundAt) * 100));
+      bar.style.width = pct + '%';
+      if(elapsed < foundAt) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    setTimeout(()=>{
+      statusText.textContent = 'Device found — checking for updates...';
+      log.textContent += '\nDevice ID: VX-2147 | RSSI: -42dBm\nChecking firmware signatures...';
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      try{
+        const s = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        s.frequency.value = 1320; s.type = 'sine';
+        g.gain.value = 0.0; s.connect(g); g.connect(audioCtx.destination);
+        s.start();
+        g.gain.linearRampToValueAtTime(0.12, audioCtx.currentTime + 0.02);
+        g.gain.linearRampToValueAtTime(0.0, audioCtx.currentTime + 0.2);
+        setTimeout(()=>{s.stop();},220);
+      }catch(e){}
+      stopBeepLoop();
+    }, foundAt);
+
+    setTimeout(()=>{
+      statusText.textContent = 'Authentication complete.';
+      log.textContent += '\nAuthentication: OK\nSession token: •••• •••• ••••';
+      modalBg.classList.add('show');
+      modalBg.setAttribute('aria-hidden','false');
+    }, popupAt);
+
+    closeBtn.addEventListener('click', ()=>{
+      window.location.href = 'home.html';
+    });
+
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        modalBg.classList.remove('show');
+        modalBg.setAttribute('aria-hidden','true');
+      }
+    });
+
+    window.addEventListener('load', ()=>{
+      document.body.addEventListener('click', ()=>{
+        if(audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      }, {once:true});
+    });
+  </script>
+</body>
+</html>

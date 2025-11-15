@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VoidLink — Clone Device</title>
+  <style>
+    :root{--bg:#000;--text:#39ff14;--accent:#06b6d4}
+    html,body{height:100%;margin:0;font-family:Consolas,Monaco,monospace;background:radial-gradient(ellipse at 20% 10%, rgba(6,6,6,1) 0%, rgba(0,0,0,1) 40%);color:var(--text);display:flex;align-items:center;justify-content:center}
+    .card{width:520px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(57,255,20,0.06);box-shadow:0 10px 30px rgba(0,0,0,0.7);padding:28px;border-radius:8px;text-align:center}
+    h1{margin:0 0 20px;font-size:22px;color:var(--text);letter-spacing:1px}
+    .btn, select{display:block;background:transparent;border:1px solid rgba(57,255,20,0.08);padding:12px 20px;border-radius:6px;color:var(--text);cursor:pointer;margin:12px auto;font-size:16px;width:70%}
+    .terminal{background:rgba(0,0,0,0.6);padding:18px;border-radius:6px;border:1px solid rgba(57,255,20,0.04);margin-top:12px;color:var(--text);text-align:left;font-size:14px;line-height:1.4;white-space:pre-wrap;max-height:320px;overflow-y:auto;display:none}
+    .progress{height:8px;background:rgba(57,255,20,0.06);border-radius:6px;overflow:hidden;margin-top:12px;opacity:0;transition:opacity 0.3s}
+    .bar{height:100%;width:0%;background:linear-gradient(90deg, rgba(57,255,20,0.2), rgba(6,182,212,0.25));transition:width linear}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>DEVICE CLONER</h1>
+
+    <button class="btn" id="selectDeviceBtn">Select Nearby Device</button>
+
+    <div id="deviceInfo" style="display:none; margin-top:10px; font-size:14px; text-align:left; white-space:pre-wrap;"></div>
+
+    <select id="cloneType" style="display:none;">
+      <option value="logs">Phone Logs</option>
+      <option value="texts">Text Messages</option>
+      <option value="passwords">Saved Passwords</option>
+      <option value="everything">Everything</option>
+    </select>
+
+    <button class="btn" id="cloneBtn" style="display:none;">Begin Clone</button>
+
+    <div class="terminal" id="cloneLog"></div>
+    <div class="progress" aria-hidden="true"><div id="cloneBar" class="bar"></div></div>
+  </div>
+
+<script>
+  const selectDeviceBtn = document.getElementById('selectDeviceBtn');
+  const deviceInfo = document.getElementById('deviceInfo');
+  const cloneType = document.getElementById('cloneType');
+  const cloneBtn = document.getElementById('cloneBtn');
+  const cloneLog = document.getElementById('cloneLog');
+  const cloneBar = document.getElementById('cloneBar');
+  const progressDiv = cloneBar.parentElement;
+
+  function randomDevice(){
+    const names = ['XT-940', 'AresLink M2', 'VantaPulse 7', 'SpectraNode', 'HelixCore Mini'];
+    const os = ['Android 14', 'Android 13', 'iOS 17', 'VoidOS 3.4', 'KernelLite 9'];
+    const strength = Math.floor(Math.random()*60)+40;
+
+    return `Device Name: ${names[Math.floor(Math.random()*names.length)]}\n`+
+           `OS Version: ${os[Math.floor(Math.random()*os.length)]}\n`+
+           `Signal Strength: ${strength}%`;
+  }
+
+  selectDeviceBtn.onclick = () => {
+    deviceInfo.style.display = 'block';
+    deviceInfo.textContent = 'Scanning for nearby devices...';
+
+    setTimeout(() => {
+      deviceInfo.textContent = randomDevice();
+      cloneType.style.display = 'block';
+      cloneBtn.style.display = 'block';
+    }, 2000);
+  };
+
+  cloneBtn.onclick = () => {
+    const type = cloneType.value;
+
+    cloneLog.style.display = 'block';
+    cloneLog.textContent = `Initializing clone for target...\nMode: ${type.toUpperCase()}\n`;
+
+    progressDiv.style.opacity = 1;
+    cloneBar.style.transition = 'width 20s linear';
+    cloneBar.style.width = '100%';
+
+    const steps = [
+      'Syncing handshake packets...',
+      'Decrypting channel...',
+      'Stabilizing uplink...',
+      'Extracting system registry...',
+      'Copying memory sectors...',
+      'Mapping encrypted containers...',
+      'Cloning requested data blocks...' 
+    ];
+
+    let index = 0;
+    function showStep(){
+      if(index < steps.length){
+        cloneLog.textContent += steps[index] + "\n";
+        cloneLog.scrollTop = cloneLog.scrollHeight;
+        index++;
+        setTimeout(showStep, 3000);
+      } else {
+        setTimeout(() => {
+          cloneLog.textContent += `\nClone Complete. Extracted Data: ${type.toUpperCase()}.`;
+
+          const fakeData = {
+            logs: 'Calls: 24 outgoing, 19 incoming. Last contact: "M. Rivera" 1h ago.',
+            texts: 'Sample Messages:\n- "Where are you?"\n- "Send it when ready."\n- "Meet at 23:40."',
+            passwords: 'Saved Passwords:\n• app_vault_01 = q9Xt$22!fa\n• device_sync_key = 7H2-33-L9A\n• backup_unlock = fz44@mm28',
+            everything: 'Full Dump Contains:\n• 243 call logs\n• 1182 text messages\n• 33 saved passwords\n• System tokens\n• Cached locations'
+          };
+
+          cloneLog.textContent += "\n\n" + fakeData[type];
+          cloneLog.scrollTop = cloneLog.scrollHeight;
+
+          const backBtn = document.createElement('button');
+          backBtn.textContent = 'Go Back';
+          backBtn.className = 'btn';
+          backBtn.style.marginTop = '20px';
+          backBtn.onclick = () => window.location.href = 'home.html';
+          cloneLog.appendChild(backBtn);
+        }, 2000);
+      }
+    }
+
+    showStep();
+  };
+</script>
+
+</body>
+</html>

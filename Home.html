@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VoidLink — Home</title>
+  <style>
+    :root{--bg:#000;--text:#39ff14;--accent:#06b6d4}
+    html,body{
+      height:100%;margin:0;
+      font-family:Consolas,Monaco,monospace;
+      background:radial-gradient(ellipse at 20% 10%, rgba(6,6,6,1) 0%, rgba(0,0,0,1) 40%);
+      color:var(--text);
+      display:flex;align-items:center;justify-content:center
+    }
+    .card{
+      width:400px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(57,255,20,0.06);
+      box-shadow:0 10px 30px rgba(0,0,0,0.7);
+      padding:28px;border-radius:8px;text-align:center
+    }
+    h1{margin:0 0 20px;font-size:20px;color:var(--text);letter-spacing:1px}
+    .btn{
+      display:block;background:transparent;
+      border:1px solid rgba(57,255,20,0.08);
+      padding:12px 20px;border-radius:6px;color:var(--text);
+      cursor:pointer;margin:12px auto;font-size:16px;width:60%
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>VOIDLINK — Home</h1>
+
+    <button class="btn" onclick="window.location.href='run_test.html'">Run Test</button>
+    <button class="btn" onclick="window.location.href='scan_devices.html'">Scan For Devices</button>
+
+    <!-- New Buttons -->
+    <button class="btn" onclick="window.location.href='clone_device.html'">Clone Device</button>
+    <button class="btn" onclick="window.location.href='mask_wifi.html'">Mask WiFi</button>
+    <button class="btn" onclick="window.location.href='breach_device.html'">Breach Device</button>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VoidLink — Device Scanner</title>
+  <style>
+    :root{--bg:#000;--text:#39ff14;--accent:#06b6d4}
+    html,body{height:100%;margin:0;font-family:Consolas,Monaco,monospace;background:radial-gradient(ellipse at 20% 10%, rgba(6,6,6,1) 0%, rgba(0,0,0,1) 40%);color:var(--text);display:flex;align-items:center;justify-content:center}
+    .card{width:500px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(57,255,20,0.06);box-shadow:0 10px 30px rgba(0,0,0,0.7);padding:28px;border-radius:8px;text-align:center}
+    h1{margin:0 0 20px;font-size:22px;color:var(--text);letter-spacing:1px}
+    .btn{display:block;background:transparent;border:1px solid rgba(57,255,20,0.08);padding:12px 20px;border-radius:6px;color:var(--text);cursor:pointer;margin:12px auto;font-size:16px;width:70%}
+    .terminal{background:rgba(0,0,0,0.6);padding:18px;border-radius:6px;border:1px solid rgba(57,255,20,0.04);margin-top:12px;color:var(--text);text-align:left;font-size:14px;line-height:1.4;white-space:pre-wrap;max-height:300px;overflow-y:auto;display:none}
+    .progress{height:8px;background:rgba(57,255,20,0.06);border-radius:6px;overflow:hidden;margin-top:12px;opacity:0;transition:opacity 0.3s}
+    .bar{height:100%;width:0%;background:linear-gradient(90deg, rgba(57,255,20,0.2), rgba(6,182,212,0.25));transition:width linear}
+
+    /* Modal styles */
+    .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity 200ms}
+    .modal-bg.show{opacity:1;pointer-events:auto}
+    .modal{background:#010101;border:2px solid rgba(57,255,20,0.2);padding:28px;border-radius:12px;min-width:360px;box-shadow:0 30px 60px rgba(0,0,0,0.9);text-align:center;color:var(--text);font-size:16px;position:relative}
+    .modal h2{font-size:24px;margin-bottom:16px;color:#06b6d4;text-shadow:0 0 8px #06b6d4,0 0 16px #39ff14}
+    .modal p{margin-bottom:20px;font-size:18px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>DEVICE SCANNER</h1>
+    <select id="deviceType" class="btn">
+      <option value="Bluetooth">Bluetooth</option>
+      <option value="Phone">Phone</option>
+      <option value="PC">PC</option>
+    </select>
+    <button id="scanBtn" class="btn">Scan for Devices</button>
+    <div class="progress" aria-hidden="true"><div id="scanBar" class="bar"></div></div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modalBg" class="modal-bg" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal">
+      <h2 id="modalTitle">Scanning Complete</h2>
+      <p id="modalMessage">Devices detected will appear here.</p>
+      <button id="goBackBtn" class="btn">Go Back</button>
+    </div>
+  </div>
+
+  <script>
+    const scanBtn = document.getElementById('scanBtn');
+    const deviceType = document.getElementById('deviceType');
+    const scanBar = document.getElementById('scanBar');
+    const progressDiv = scanBar.parentElement;
+    const modalBg = document.getElementById('modalBg');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalMessage = document.getElementById('modalMessage');
+    const goBackBtn = document.getElementById('goBackBtn');
+
+    function scanDevices(){
+      scanBtn.disabled = true;
+      deviceType.disabled = true;
+      progressDiv.style.opacity = 1;
+      scanBar.style.transition = 'width 50s linear';
+      scanBar.style.width = '100%';
+
+      let scanLog = '';
+      const duration = 50000; // 50 seconds
+      const startTime = Date.now();
+      const messages = [
+        'Activating signal boosters...',
+        'Scanning surroundings for devices...',
+        'Optimizing sensor alignment...',
+        'Analyzing electromagnetic signatures...',
+        'Checking device protocols...',
+        'Filtering background noise...',
+        'Validating device IDs...',
+        'Finalizing scan report...'
+      ];
+      let lastMsgIndex = -1;
+
+      function tick(){
+        const elapsed = Date.now() - startTime;
+        const msgIndex = Math.floor((elapsed / duration) * messages.length);
+        if(msgIndex > lastMsgIndex){
+          lastMsgIndex = msgIndex;
+        }
+        if(elapsed < duration){
+          requestAnimationFrame(tick);
+        } else {
+          // Show modal with results
+          modalTitle.textContent = 'Scan Complete';
+          if(deviceType.value === 'Bluetooth'){
+            modalMessage.textContent = 'No Bluetooth devices found nearby.';
+          } else {
+            modalMessage.textContent = `Found multiple ${deviceType.value} devices nearby.`;
+          }
+          modalBg.classList.add('show');
+          modalBg.setAttribute('aria-hidden','false');
+        }
+      }
+      tick();
+    }
+
+    scanBtn.addEventListener('click', scanDevices);
+    goBackBtn.addEventListener('click', ()=> window.location.href='home.html');
+  </script>
+</body>
+</html>
