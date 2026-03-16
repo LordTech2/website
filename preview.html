@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Federal Telecommunications Trace System</title>
+
+<style>
+
+body{
+background:black;
+color:#00ff88;
+font-family:Courier New, monospace;
+margin:0;
+overflow:hidden;
+}
+
+/* radar grid */
+
+#radar{
+position:fixed;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle, rgba(0,255,120,.2) 1px, transparent 1px);
+background-size:50px 50px;
+opacity:.15;
+}
+
+/* radar sweep */
+
+#sweep{
+position:fixed;
+width:200%;
+height:200%;
+background:conic-gradient(
+rgba(0,255,120,0) 0deg,
+rgba(0,255,120,.4) 15deg,
+rgba(0,255,120,0) 30deg
+);
+animation:spin 6s linear infinite;
+opacity:.1;
+}
+
+@keyframes spin{
+from{transform:rotate(0deg)}
+to{transform:rotate(360deg)}
+}
+
+#container{
+position:relative;
+z-index:2;
+padding:30px;
+}
+
+h1{
+text-shadow:0 0 12px #00ff88;
+letter-spacing:2px;
+}
+
+/* terminal box */
+
+#terminal{
+border:1px solid #00ff88;
+padding:10px;
+height:220px;
+overflow:auto;
+margin-top:15px;
+}
+
+/* buttons */
+
+button{
+background:black;
+color:#00ff88;
+border:2px solid #00ff88;
+padding:12px 22px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#003322;
+}
+
+/* progress */
+
+#bar{
+width:100%;
+background:#002211;
+height:18px;
+margin-top:12px;
+}
+
+#progress{
+height:100%;
+width:0%;
+background:#00ff88;
+}
+
+/* result */
+
+#result{
+margin-top:18px;
+font-size:17px;
+}
+
+#target{
+position:absolute;
+width:14px;
+height:14px;
+background:red;
+border-radius:50%;
+box-shadow:0 0 14px red;
+display:none;
+}
+
+#ping{
+display:none;
+margin-top:12px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="radar"></div>
+<div id="sweep"></div>
+
+<div id="container">
+
+<h1>SECURE TELECOMMUNICATIONS TRACE INTERFACE</h1>
+
+<button onclick="startTrace()">INITIATE TRACE</button>
+
+<div id="terminal"></div>
+
+<div id="bar">
+<div id="progress"></div>
+</div>
+
+<div id="result"></div>
+
+<button id="ping" onclick="ping()">PING DEVICE</button>
+
+<div id="target"></div>
+
+</div>
+
+<script>
+
+const carriers=[
+"Verizon Wireless",
+"AT&T Mobility",
+"T-Mobile Network",
+"US Cellular",
+"Sprint Legacy Node"
+]
+
+const devices=[
+"Apple iPhone 14",
+"Samsung Galaxy S23",
+"Google Pixel 7",
+"Motorola Edge",
+"OnePlus 11"
+]
+
+const streets=[
+"Washington St",
+"Lincoln Ave",
+"Franklin St",
+"Broadway",
+"Main St",
+"Atlantic Ave"
+]
+
+function rand(min,max){
+return (Math.random()*(max-min)+min).toFixed(5)
+}
+
+function randItem(arr){
+return arr[Math.floor(Math.random()*arr.length)]
+}
+
+function fakePhone(){
+return "+1 ("+
+Math.floor(Math.random()*900+100)+") "+
+Math.floor(Math.random()*900+100)+"-"+
+Math.floor(Math.random()*9000+1000)
+}
+
+function fakeIMEI(){
+let n=""
+for(let i=0;i<15;i++) n+=Math.floor(Math.random()*10)
+return n
+}
+
+function log(text){
+let t=document.getElementById("terminal")
+t.innerHTML+=text+"<br>"
+t.scrollTop=t.scrollHeight
+}
+
+function speak(text){
+let s=new SpeechSynthesisUtterance(text)
+s.rate=.9
+s.pitch=.7
+speechSynthesis.speak(s)
+}
+
+function startTrace(){
+
+document.getElementById("terminal").innerHTML=""
+document.getElementById("result").innerHTML=""
+document.getElementById("ping").style.display="none"
+
+log("Connecting to telecom gateway...")
+setTimeout(()=>log("Authenticating federal network access..."),1200)
+setTimeout(()=>log("Intercepting call metadata..."),2200)
+setTimeout(()=>log("Initiating tower triangulation..."),3500)
+setTimeout(()=>log("Requesting carrier location packet..."),4700)
+
+let progress=0
+
+let timer=setInterval(()=>{
+
+progress+=3.3
+document.getElementById("progress").style.width=progress+"%"
+
+if(progress>=100){
+
+clearInterval(timer)
+
+let success=Math.random()
+
+if(success>.25){
+
+let lat=rand(-90,90)
+let lon=rand(-180,180)
+
+let phone=fakePhone()
+let imei=fakeIMEI()
+
+let carrier=randItem(carriers)
+let device=randItem(devices)
+
+let streetNum=Math.floor(Math.random()*900+100)
+let street=randItem(streets)
+
+let tower=Math.floor(Math.random()*9000+1000)
+
+document.getElementById("result").innerHTML=
+
+"<span style='color:#00ff88'>TRACE COMPLETE</span><br><br>"+
+
+"Phone Number: "+phone+"<br>"+
+"IMEI: "+imei+"<br>"+
+"Device: "+device+"<br>"+
+"Carrier: "+carrier+"<br>"+
+"Cell Tower ID: "+tower+"<br>"+
+"Coordinates: "+lat+", "+lon+"<br>"+
+"Last Known Address: "+streetNum+" "+street+"<br>"+
+"Confidence Level: "+Math.floor(Math.random()*20+80)+"%"
+
+log("Device identified.")
+log("Location triangulated.")
+
+let x=Math.random()*window.innerWidth
+let y=Math.random()*window.innerHeight
+
+let target=document.getElementById("target")
+target.style.left=x+"px"
+target.style.top=y+"px"
+target.style.display="block"
+
+speak("Trace complete")
+
+document.getElementById("ping").style.display="inline-block"
+
+}
+
+else{
+
+document.getElementById("result").innerHTML=
+"<span style='color:red'>TRACE FAILED</span><br>"+
+"Caller disconnected before triangulation completed."
+
+log("Signal lost.")
+
+}
+
+}
+
+},1000)
+
+}
+
+function ping(){
+
+log("Sending signal ping...")
+log("Awaiting response...")
+
+setTimeout(()=>{
+
+let lat=rand(-90,90)
+let lon=rand(-180,180)
+
+log("Updated location received.")
+
+document.getElementById("result").innerHTML+=
+
+"<br><br>UPDATED LOCATION:<br>"+lat+", "+lon
+
+let x=Math.random()*window.innerWidth
+let y=Math.random()*window.innerHeight
+
+let target=document.getElementById("target")
+target.style.left=x+"px"
+target.style.top=y+"px"
+
+},2000)
+
+}
+
+</script>
+
+</body>
+</html>
